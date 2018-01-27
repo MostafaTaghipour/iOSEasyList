@@ -20,7 +20,7 @@ Everything you need to implement your own lists:
 - Empty View
 - Multiple data type
 
-<img width="300" alt="animation" src="/screenshots/animation-ios.gif"> <img width="300" alt="expandable" src="/screenshots/expandable_ios.gif"> <img width="300" alt="filtering" src="/screenshots/filtering-ios.gif"> <img width="300" alt="message" src="/screenshots/message-ios.gif"> <img width="300" alt="layout" src="/screenshots/layout-ios.gif"> <img width="300" alt="pagination" src="/screenshots/pagination-ios.gif"> <img width="300" alt="sectioned" src="/screenshots/sectioned-ios.gif">
+<img width="290" alt="animation" src="/screenshots/animation-ios.gif"> <img width="290" alt="expandable" src="/screenshots/expandable_ios.gif"> <img width="290" alt="filtering" src="/screenshots/filtering-ios.gif"> <img width="290" alt="message" src="/screenshots/message-ios.gif"> <img width="290" alt="layout" src="/screenshots/layout-ios.gif"> <img width="290" alt="pagination" src="/screenshots/pagination-ios.gif"> <img width="290" alt="sectioned" src="/screenshots/sectioned-ios.gif">
 
 
 ## Requirements
