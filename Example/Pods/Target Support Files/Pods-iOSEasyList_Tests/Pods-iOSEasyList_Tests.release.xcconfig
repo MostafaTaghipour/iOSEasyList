@@ -1,0 +1,8 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire" "$PODS_CONFIGURATION_BUILD_DIR/Kingfisher" "$PODS_CONFIGURATION_BUILD_DIR/Moya" "$PODS_CONFIGURATION_BUILD_DIR/Result" "$PODS_CONFIGURATION_BUILD_DIR/RxCocoa" "$PODS_CONFIGURATION_BUILD_DIR/RxGesture" "$PODS_CONFIGURATION_BUILD_DIR/RxKeyboard" "$PODS_CONFIGURATION_BUILD_DIR/RxSwift" "$PODS_CONFIGURATION_BUILD_DIR/iOSEasyList"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Kingfisher/Kingfisher.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result/Result.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/RxCocoa/RxCocoa.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/RxGesture/RxGesture.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/RxKeyboard/RxKeyboard.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/RxSwift/RxSwift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/iOSEasyList/iOSEasyList.framework/Headers"
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods

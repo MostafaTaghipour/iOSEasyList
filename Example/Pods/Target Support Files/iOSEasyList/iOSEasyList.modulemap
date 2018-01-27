@@ -1,0 +1,6 @@
+framework module iOSEasyList {
+  umbrella header "iOSEasyList-umbrella.h"
+
+  export *
+  module * { export * }
+}

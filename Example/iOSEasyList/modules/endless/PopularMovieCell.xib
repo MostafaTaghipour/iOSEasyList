@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PopularMovieCell" customModule="ListExample_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="166"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="156" height="166"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6l-Io-s9x" customClass="CardView" customModule="ListExample_iOS" customModuleProvider="target">
+                        <rect key="frame" x="4" y="4" width="148" height="158"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFj-wR-XOT" customClass="CardImageView" customModule="ListExample_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="148" height="158"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.66666666669999997" green="0.67843137249999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nFj-wR-XOT" secondAttribute="trailing" id="75p-AH-cuF"/>
+                            <constraint firstAttribute="bottom" secondItem="nFj-wR-XOT" secondAttribute="bottom" id="R5G-2j-81Z"/>
+                            <constraint firstItem="nFj-wR-XOT" firstAttribute="leading" secondItem="f6l-Io-s9x" secondAttribute="leading" id="iu8-nb-pDl"/>
+                            <constraint firstItem="nFj-wR-XOT" firstAttribute="top" secondItem="f6l-Io-s9x" secondAttribute="top" id="ojn-iC-03q"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottomMargin" secondItem="f6l-Io-s9x" secondAttribute="bottom" constant="4" id="Kb4-Hy-dqJ"/>
+                <constraint firstItem="f6l-Io-s9x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="QAT-RD-DAU"/>
+                <constraint firstAttribute="trailing" secondItem="f6l-Io-s9x" secondAttribute="trailing" constant="4" id="bhZ-bU-d08"/>
+                <constraint firstItem="f6l-Io-s9x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" constant="4" id="fzz-du-ul0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="156" height="166"/>
+            <connections>
+                <outlet property="imgView" destination="nFj-wR-XOT" id="iOX-bu-cjM"/>
+            </connections>
+            <point key="canvasLocation" x="-19" y="112"/>
+        </collectionViewCell>
+    </objects>
+</document>

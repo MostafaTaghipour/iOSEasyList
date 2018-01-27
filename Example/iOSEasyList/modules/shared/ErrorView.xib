@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorView" customModule="ListExample_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="errorCause" destination="oJS-kD-XrW" id="lOt-ol-m0n"/>
+                <outlet property="retryButton" destination="H93-Vo-uZb" id="0T0-w2-8o8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgF-nM-0bH">
+                    <rect key="frame" x="68" y="273" width="238" height="122"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry! Couldn't fetch movies." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq1-de-s6m">
+                            <rect key="frame" x="8" y="8" width="222" height="20.5"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H93-Vo-uZb">
+                            <rect key="frame" x="8" y="84" width="222" height="30"/>
+                            <state key="normal" title="RETRY"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The server took too long to respond." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJS-kD-XrW">
+                            <rect key="frame" x="8" y="36" width="222" height="16"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Kq1-de-s6m" firstAttribute="leading" secondItem="ZgF-nM-0bH" secondAttribute="leading" constant="8" id="4gJ-u3-ZuT"/>
+                        <constraint firstAttribute="trailing" secondItem="oJS-kD-XrW" secondAttribute="trailing" constant="8" id="A62-Vk-v6J"/>
+                        <constraint firstAttribute="trailing" secondItem="H93-Vo-uZb" secondAttribute="trailing" constant="8" id="Hx1-8S-y38"/>
+                        <constraint firstItem="Kq1-de-s6m" firstAttribute="top" secondItem="ZgF-nM-0bH" secondAttribute="top" constant="8" id="KWw-JN-duO"/>
+                        <constraint firstAttribute="trailing" secondItem="Kq1-de-s6m" secondAttribute="trailing" constant="8" id="Kf7-91-Vbo"/>
+                        <constraint firstItem="oJS-kD-XrW" firstAttribute="top" secondItem="Kq1-de-s6m" secondAttribute="bottom" constant="8" id="Ns7-Sj-oTa"/>
+                        <constraint firstItem="H93-Vo-uZb" firstAttribute="leading" secondItem="ZgF-nM-0bH" secondAttribute="leading" constant="8" id="TdF-Be-Mfq"/>
+                        <constraint firstAttribute="bottom" secondItem="H93-Vo-uZb" secondAttribute="bottom" constant="8" id="bMP-Z0-7xq"/>
+                        <constraint firstItem="H93-Vo-uZb" firstAttribute="top" secondItem="oJS-kD-XrW" secondAttribute="bottom" constant="32" id="mZW-RB-RL9"/>
+                        <constraint firstItem="oJS-kD-XrW" firstAttribute="leading" secondItem="ZgF-nM-0bH" secondAttribute="leading" constant="8" id="nnK-hp-QKv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZgF-nM-0bH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3Et-1n-75p"/>
+                <constraint firstItem="ZgF-nM-0bH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dIZ-cU-T5n"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>

@@ -2,6 +2,10 @@ use_frameworks!
 
 target 'iOSEasyList_Example' do
   pod 'iOSEasyList', :path => '../'
+  pod 'Moya'
+  pod 'Kingfisher'
+  pod 'RxGesture'
+  pod 'RxKeyboard'
 
   target 'iOSEasyList_Tests' do
     inherit! :search_paths
