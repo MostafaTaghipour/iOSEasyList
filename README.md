@@ -28,6 +28,16 @@ Everything you need to implement your own lists:
 - Swift 4
 - iOS 8+
 
+## Installation
+
+iOSEasyList is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'iOSEasyList'
+```
+
+
 ## Usage
 1. Define your model
 ```swift
@@ -77,14 +87,6 @@ override func viewDidLoad() {
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Installation
-
-iOSEasyList is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-    pod 'iOSEasyList'
-```
 
 ## Author
 
