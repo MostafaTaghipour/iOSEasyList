@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'iOSEasyList_Example' do
+  pod 'iOSEasyList', :path => '../'
+
+  target 'iOSEasyList_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
