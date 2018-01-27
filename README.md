@@ -61,6 +61,7 @@ override func viewDidLoad() {
         return cell
     }
 
+    //optional
     adapter.animationConfig = AnimationConfig(reload: .fade, insert: .top, delete: .bottom)
 }
 ```
@@ -87,7 +88,7 @@ it, simply add the following line to your Podfile:
 
 ## Author
 
-mostafa.taghipour@ymail.com, mostafa.taghipour@ymail.com
+Mostafa Taghipour, mostafa.taghipour@ymail.com
 
 ## License
 
