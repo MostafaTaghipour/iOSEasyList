@@ -4,6 +4,9 @@
 [![Version](https://img.shields.io/cocoapods/v/iOSEasyList.svg?style=flat)](http://cocoapods.org/pods/iOSEasyList)
 [![License](https://img.shields.io/cocoapods/l/iOSEasyList.svg?style=flat)](http://cocoapods.org/pods/iOSEasyList)
 [![Platform](https://img.shields.io/cocoapods/p/iOSEasyList.svg?style=flat)](http://cocoapods.org/pods/iOSEasyList)
+
+## [Android version is here](https://github.com/MostafaTaghipour/AndroidEasyList)
+
 Framework to simplify the setup and configuration of UITableView and UICollectionView data sources and cells. It allows a type-safe setup of (UITableView,UICollectionView) DataSource and Delegate. DataSource also provides out-of-the-box diffing and animated deletions, inserts, moves and changes.
 
 
@@ -18,6 +21,7 @@ Everything you need to implement your own lists:
 - Loading footer
 - Various UICollectionView layouts
 - Empty View
+- Filterable
 - Multiple data type
 
 <img width="290" alt="animation" src="/screenshots/animation-ios.gif"> <img width="290" alt="expandable" src="/screenshots/expandable_ios.gif"> <img width="290" alt="filtering" src="/screenshots/filtering-ios.gif"> <img width="290" alt="message" src="/screenshots/message-ios.gif"> <img width="290" alt="layout" src="/screenshots/layout-ios.gif"> <img width="290" alt="pagination" src="/screenshots/pagination-ios.gif"> <img width="290" alt="sectioned" src="/screenshots/sectioned-ios.gif">
@@ -63,17 +67,18 @@ struct Movie : Diffable {
 ```swift
 let tableView: UITableView
 
-override func viewDidLoad() {
-    super.viewDidLoad()
+lazy var adapter: TableViewAdapter = { [unowned self] in
     let adapter=TableViewAdapter(tableView: tableView) { (tv, ip, item) -> (UITableViewCell) in
         let cell = tv.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: ip) as! MovieCell
         cell.data = item as? Movie
         return cell
     }
-
+    
     //optional
     adapter.animationConfig = AnimationConfig(reload: .fade, insert: .top, delete: .bottom)
-}
+    
+    return adapter
+}()
 ```
 
 3. Set Data
@@ -86,6 +91,11 @@ override func viewDidLoad() {
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+
+## Thanks for
+
+- [AlignedCollectionViewFlowLayout](https://github.com/mischa-hildebrand/AlignedCollectionViewFlowLayout)
 
 
 ## Author

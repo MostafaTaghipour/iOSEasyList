@@ -18,6 +18,15 @@ class FilteringVC: UIViewController {
     var viewModel:FilteringVM!
     var bag=DisposeBag()
     
+    lazy var adapter: TableViewAdapter = { [unowned self] in
+        let adapter=TableViewAdapter(tableView: tableView) { (tv, ip, item) -> (UITableViewCell) in
+            let cell = tv.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: ip) as! MovieCell
+            cell.data = item as? Movie
+            return cell
+        }
+        adapter.emptyView=EmptyView(frame: .zero)
+        return adapter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,21 +51,13 @@ class FilteringVC: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 125
         
-        //setup adapter
-        let adapter=TableViewAdapter(tableView: tableView) { (tv, ip, item) -> (UITableViewCell) in
-            let cell = tv.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: ip) as! MovieCell
-            cell.data = item as? Movie
-            return cell
-        }
-        adapter.emptyView=EmptyView(frame: .zero)
-
-        
+      
         //bind tableview
         viewModel
             .items
             .asDriver()
             .drive(onNext: { (items) in
-                adapter.setData(newData: items)
+                self.adapter.setData(newData: items)
             })
             .disposed(by: bag)
     }
