@@ -12,21 +12,12 @@ import RxGesture
 import iOSEasyList
 
 class FilteringVC: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
-
+    
     var viewModel:FilteringVM!
     var bag=DisposeBag()
-    
-    lazy var adapter: TableViewAdapter = { [unowned self] in
-        let adapter=TableViewAdapter(tableView: tableView) { (tv, ip, item) -> (UITableViewCell) in
-            let cell = tv.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: ip) as! MovieCell
-            cell.data = item as? Movie
-            return cell
-        }
-        adapter.emptyView=EmptyView(frame: .zero)
-        return adapter
-    }()
+    var adapter:FilteringAdapter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +42,8 @@ class FilteringVC: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 125
         
-      
+        adapter=FilteringAdapter(tableView: tableView)
+        
         //bind tableview
         viewModel
             .items
@@ -87,7 +79,7 @@ class FilteringVC: UIViewController {
         // 4
         orderMenu.addAction(TitleAction)
         orderMenu.addAction(YearAction)
-         orderMenu.addAction(LangAction)
+        orderMenu.addAction(LangAction)
         orderMenu.addAction(cancelAction)
         
         // 5
@@ -97,8 +89,6 @@ class FilteringVC: UIViewController {
 
 extension FilteringVC:UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel.setFilter(newText: searchController.searchBar.text)
+        adapter.setFilterConstraint(constraint: searchController.searchBar.text)
     }
-    
-    
 }

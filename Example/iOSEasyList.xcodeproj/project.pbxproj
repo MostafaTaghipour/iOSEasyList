@@ -13,6 +13,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		BA5379CC32FDE6ACDC869F2B /* Pods_iOSEasyList_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A1C6E90D3B69CB3097618E /* Pods_iOSEasyList_Tests.framework */; };
 		D34B262FB2C2B0167B95828E /* Pods_iOSEasyList_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4AA40DA993F5B728653FF1 /* Pods_iOSEasyList_Example.framework */; };
+		DAE408762020D3C300B50BA0 /* FilteringAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE408752020D3C300B50BA0 /* FilteringAdapter.swift */; };
 		DAF1AF09201CF35B000D12DA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AF07201CF2EF000D12DA /* API.swift */; };
 		DAF1AF0A201CF35B000D12DA /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AF08201CF2EF000D12DA /* MovieApi.swift */; };
 		DAF1AF0B201CF35B000D12DA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEB3201CF2EE000D12DA /* Message.swift */; };
@@ -59,7 +60,6 @@
 		DAF1AF34201CF35B000D12DA /* MessageSendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEE6201CF2EF000D12DA /* MessageSendCell.swift */; };
 		DAF1AF35201CF35B000D12DA /* MessageSendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF1AEE7201CF2EF000D12DA /* MessageSendCell.xib */; };
 		DAF1AF36201CF35B000D12DA /* messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF1AEE8201CF2EF000D12DA /* messaging.storyboard */; };
-		DAF1AF37201CF35B000D12DA /* MessagingAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEE9201CF2EF000D12DA /* MessagingAdapter.swift */; };
 		DAF1AF38201CF35B000D12DA /* MessagingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEEA201CF2EF000D12DA /* MessagingVC.swift */; };
 		DAF1AF39201CF35B000D12DA /* MessagingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEEB201CF2EF000D12DA /* MessagingVM.swift */; };
 		DAF1AF3A201CF35B000D12DA /* SectionedAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEED201CF2EF000D12DA /* SectionedAdapter.swift */; };
@@ -113,6 +113,7 @@
 		7AB5E73A10D97655BBA6C0DA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A6B0C07E8F69ECD2E69B1F2F /* iOSEasyList.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = iOSEasyList.podspec; path = ../iOSEasyList.podspec; sourceTree = "<group>"; };
 		CCCE98BAD9ACB2025B78A1C1 /* Pods-iOSEasyList_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEasyList_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSEasyList_Tests/Pods-iOSEasyList_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		DAE408752020D3C300B50BA0 /* FilteringAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringAdapter.swift; sourceTree = "<group>"; };
 		DAF1AEB3201CF2EE000D12DA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DAF1AEB4201CF2EE000D12DA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		DAF1AEB7201CF2EF000D12DA /* AnimationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationAdapter.swift; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		DAF1AEE6201CF2EF000D12DA /* MessageSendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSendCell.swift; sourceTree = "<group>"; };
 		DAF1AEE7201CF2EF000D12DA /* MessageSendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSendCell.xib; sourceTree = "<group>"; };
 		DAF1AEE8201CF2EF000D12DA /* messaging.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = messaging.storyboard; sourceTree = "<group>"; };
-		DAF1AEE9201CF2EF000D12DA /* MessagingAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingAdapter.swift; sourceTree = "<group>"; };
 		DAF1AEEA201CF2EF000D12DA /* MessagingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingVC.swift; sourceTree = "<group>"; };
 		DAF1AEEB201CF2EF000D12DA /* MessagingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingVM.swift; sourceTree = "<group>"; };
 		DAF1AEED201CF2EF000D12DA /* SectionedAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedAdapter.swift; sourceTree = "<group>"; };
@@ -371,6 +371,7 @@
 				DAF1AECE201CF2EF000D12DA /* FilteringVC.swift */,
 				DAF1AECF201CF2EF000D12DA /* FilteringVC.xib */,
 				DAF1AED0201CF2EF000D12DA /* FilteringVM.swift */,
+				DAE408752020D3C300B50BA0 /* FilteringAdapter.swift */,
 			);
 			path = filtering;
 			sourceTree = "<group>";
@@ -412,7 +413,6 @@
 				DAF1AEE6201CF2EF000D12DA /* MessageSendCell.swift */,
 				DAF1AEE7201CF2EF000D12DA /* MessageSendCell.xib */,
 				DAF1AEE8201CF2EF000D12DA /* messaging.storyboard */,
-				DAF1AEE9201CF2EF000D12DA /* MessagingAdapter.swift */,
 				DAF1AEEA201CF2EF000D12DA /* MessagingVC.swift */,
 				DAF1AEEB201CF2EF000D12DA /* MessagingVM.swift */,
 			);
@@ -736,7 +736,6 @@
 				DAF1AF30201CF35B000D12DA /* MainVC.swift in Sources */,
 				DAF1AF46201CF35B000D12DA /* LoadingView.swift in Sources */,
 				DAF1AF0B201CF35B000D12DA /* Message.swift in Sources */,
-				DAF1AF37201CF35B000D12DA /* MessagingAdapter.swift in Sources */,
 				DAF1AF3E201CF35B000D12DA /* SectionFooter.swift in Sources */,
 				DAF1AF20201CF35B000D12DA /* ExpandableVM.swift in Sources */,
 				DAF1AF1D201CF35B000D12DA /* ExpandableAdapter.swift in Sources */,
@@ -756,6 +755,7 @@
 				DAF1AF4C201CF35B000D12DA /* RetryFooter.swift in Sources */,
 				DAF1AF1B201CF35B000D12DA /* CollapsibleTableViewHeader.swift in Sources */,
 				DAF1AF3B201CF35B000D12DA /* SectionedVC.swift in Sources */,
+				DAE408762020D3C300B50BA0 /* FilteringAdapter.swift in Sources */,
 				DAF1AF11201CF35B000D12DA /* EndlessAdapter.swift in Sources */,
 				DAF1AF0D201CF35B000D12DA /* AnimationAdapter.swift in Sources */,
 				DAF1AF0C201CF35B000D12DA /* Movie.swift in Sources */,

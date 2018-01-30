@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UICollectionViewDelegate {
+open class CollectionViewAdapter : ListAdapter , UICollectionViewDataSource,UICollectionViewDelegate {
     
     //constructors
     public init(collectionView:UICollectionView) {
@@ -39,8 +39,8 @@ open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UIColle
     // variables
     public weak var collectionView :UICollectionView?
     private var collectionViewUpdater : CollectionViewUpdater?
-   
-    public var isAnimationEnable:Bool=true{
+    
+    public override var isAnimationEnable:Bool{
         didSet{
             collectionViewUpdater?.isAnimationEnable = isAnimationEnable
         }
@@ -54,7 +54,7 @@ open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UIColle
     public  typealias didSelectItemType = (_ data:Any?,_ indexPath:IndexPath)->()
     public var didSelectItem : didSelectItemType?
     
-    public  var emptyView:UIView?{
+    internal override var emptyView:UIView?{
         didSet{
             guard let emptyView = emptyView else { return  }
             collectionView?.backgroundView=emptyView
@@ -63,14 +63,28 @@ open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UIColle
     }
     
     
-    
     // setters
-    public func setData(newData:[Any]?,animated:Bool=true){
+    public override func setData(newData:[Any]?,animated:Bool=true){
+        super.setData(newData: newData)
         collectionViewUpdater?.reload(newData: newData ?? [Any](), animated: animated)
     }
     
+    
+    public override func setEmptyView(emptyView:UIView){
+        self.emptyView=emptyView
+    }
+    
+    public override func setEmptyView(fromNib name: String) {
+        guard let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIView else {
+            fatalError("Could not load view from nib with name \(name)")
+        }
+        
+        self.emptyView=view
+    }
+    
+    
     // getters
-    public func getData()->[Any]{
+    public override func getData()->[Any]{
         guard let dataSource = collectionViewUpdater?.dataSource , !dataSource.isEmpty else {
             return []
         }
@@ -78,11 +92,11 @@ open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UIColle
         return dataSource.count > 1 ? dataSource : dataSource[0].sectionItems
     }
     
-    public func getData<T>(itemType: T.Type)->[T]?{
+    public override func getData<T>(itemType: T.Type)->[T]?{
         return getData() as? [T]
     }
     
-    public func getItem(indexPath:IndexPath)->Any?{
+    public override func getItem(indexPath:IndexPath)->Any?{
         guard let collectionView = self.collectionView ,
             collectionView.isIndexPathValid(indexPath: indexPath),
             let updater = collectionViewUpdater else { return nil }
@@ -90,11 +104,11 @@ open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UIColle
         return  updater.dataSource[indexPath.section].sectionItems[indexPath.row]
     }
     
-    public func getItem<T>(indexPath:IndexPath, itemType: T.Type)->T?{
+    public override func getItem<T>(indexPath:IndexPath, itemType: T.Type)->T?{
         return getItem(indexPath: indexPath) as? T
     }
     
-    public func getSection(section:Int)->Any?{
+    public override func getSection(section:Int)->Any?{
         guard let collectionView = self.collectionView ,
             collectionView.isSectionValid(section: section),
             let updater = collectionViewUpdater else { return nil }
@@ -102,7 +116,7 @@ open class CollectionViewAdapter : NSObject , UICollectionViewDataSource,UIColle
         return  updater.dataSource[section]
     }
     
-    public func getSection<T>(section:Int, itemType: T.Type)->T?{
+    public override func getSection<T>(section:Int, itemType: T.Type)->T?{
         return getSection(section: section) as? T
     }
     

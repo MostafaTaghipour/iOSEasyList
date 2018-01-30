@@ -8,33 +8,23 @@
 
 import UIKit
 
-open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelegate {
+open class TableViewAdapter : ListAdapter , UITableViewDataSource,UITableViewDelegate {
     
     // constructors
-    public init(tableView:UITableView) {
+    public init(tableView:UITableView,
+                configCell : configCellType?=nil,
+                didSelectItem : didSelectItemType?=nil) {
         super.init()
         self.tableView=tableView
         self.tableView?.delegate=self
         self.tableView?.dataSource=self
         self.tableViewUpdater=TableViewUpdater(tableView: tableView)
-    }
-    
-    public  convenience init(tableView:UITableView,
-                             configCell : @escaping configCellType,
-                             didSelectItem : @escaping didSelectItemType) {
-        
-        self.init(tableView: tableView, configCell: configCell)
         self.didSelectItem=didSelectItem
         
+        if let configCell=configCell{
+            self.configCell=configCell
+        }
     }
-    
-    public  convenience init(tableView:UITableView,
-                             configCell : @escaping configCellType) {
-        
-        self.init(tableView: tableView)
-        self.configCell=configCell
-    }
-    
     
     
     // variables
@@ -46,7 +36,7 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
             tableViewUpdater?.animationConfig=config
         }
     }
-    public var isAnimationEnable:Bool=true{
+    override public var isAnimationEnable:Bool{
         didSet{
             tableViewUpdater?.isAnimationEnable = isAnimationEnable
         }
@@ -60,7 +50,7 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
     public  typealias didSelectItemType = (_ data:Any?,_ indexPath:IndexPath)->()
     public var didSelectItem : didSelectItemType?
     
-    public var emptyView:UIView?{
+    internal override var emptyView:UIView?{
         didSet{
             guard let emptyView = emptyView else { return  }
             tableView?.backgroundView=emptyView
@@ -71,13 +61,14 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
     
     
     // setters
-    public func setData(newData:[Any]?,animated:Bool=true){
+    public override func setData(newData:[Any]?,animated:Bool=true){
+        super.setData(newData: newData)
         tableViewUpdater?.reload(newData: newData ?? [Any](), animated: animated)
     }
     
     
     // getters
-    public func getData()->[Any]{
+    public override func getData()->[Any]{
         guard let dataSource = tableViewUpdater?.dataSource , !dataSource.isEmpty else {
             return []
         }
@@ -85,11 +76,11 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
         return dataSource.count > 1 ? dataSource : dataSource[0].sectionItems
     }
     
-    public func getData<T>(itemType: T.Type)->[T]?{
+    public override func getData<T>(itemType: T.Type)->[T]?{
         return getData() as? [T]
     }
     
-    public func getItem(indexPath:IndexPath)->Any?{
+    public override func getItem(indexPath:IndexPath)->Any?{
         guard let tableView = self.tableView ,
             tableView.isIndexPathValid(indexPath: indexPath),
             let updater = tableViewUpdater else { return nil }
@@ -97,11 +88,11 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
         return  updater.dataSource[indexPath.section].sectionItems[indexPath.row] 
     }
     
-    public func getItem<T>(indexPath:IndexPath, itemType: T.Type)->T?{
+    public override func getItem<T>(indexPath:IndexPath, itemType: T.Type)->T?{
         return getItem(indexPath: indexPath) as? T
     }
     
-    public func getSection(section:Int)->Any?{
+    public override func getSection(section:Int)->Any?{
         guard let tableView = self.tableView ,
             tableView.isSectionValid(section: section),
             let updater = tableViewUpdater else { return nil }
@@ -109,11 +100,11 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
         return  updater.dataSource[section]
     }
     
-    public func getSection<T>(section:Int, itemType: T.Type)->T?{
+    public override func getSection<T>(section:Int, itemType: T.Type)->T?{
         return getSection(section: section) as? T
     }
     
-   
+    
     
     //MARK:- UITableViewDataSource,UITableViewDelegate
     open func numberOfSections(in tableView: UITableView) -> Int {
@@ -140,5 +131,8 @@ open class TableViewAdapter : NSObject , UITableViewDataSource,UITableViewDelega
         self.didSelectItem?(getItem(indexPath: indexPath), indexPath)
     }
 }
+
+
+
 
 

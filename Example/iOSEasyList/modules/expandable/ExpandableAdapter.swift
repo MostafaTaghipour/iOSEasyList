@@ -13,7 +13,7 @@ class ExpandableAdapter: TableViewAdapter {
     private let HEADER_HEIGHT:CGFloat=44
     weak var delegate:ExpandableAdapterDelegate?
     
-    override init(tableView: UITableView) {
+     init(tableView: UITableView) {
         super.init(tableView: tableView)
         
         self.configCell = { (tableView, index, data) in

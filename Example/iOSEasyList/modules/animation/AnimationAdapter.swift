@@ -18,7 +18,7 @@ class AnimationAdapter : TableViewAdapter {
     
 
     
-    override init(tableView:UITableView) {
+     init(tableView:UITableView) {
         super.init(tableView: tableView)
         
         self.configCell = { (tableView, index, data) in

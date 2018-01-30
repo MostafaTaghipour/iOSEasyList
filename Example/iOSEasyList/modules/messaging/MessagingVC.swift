@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxKeyboard
+import iOSEasyList
 
 class MessagingVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -18,6 +19,28 @@ class MessagingVC: UIViewController {
     var viewModel:MessagingVM!
     var bag=DisposeBag()
     
+    lazy var adapter: TableViewAdapter = { [unowned self] in
+        let adapter=TableViewAdapter(tableView: tableView)
+        
+        adapter.configCell = { (tableView, index, data) in
+            let message = data as! Message
+            
+            if message.sender == me {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MessageSendCell.reuseIdentifier, for: index) as! MessageSendCell
+                cell.data = message
+                return cell
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: MessageReceiveCell.reuseIdentifier, for: index) as! MessageReceiveCell
+                cell.data = message
+                return cell
+            }
+        }
+        
+        adapter.animationConfig = AnimationConfig(reload: .none, insert: .top, delete: .none)
+        
+        return adapter
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +67,14 @@ class MessagingVC: UIViewController {
         tableView.keyboardDismissMode = .interactive
         updateContentInset()
         
-        //setup adapter
-        let adapter = MessagingAdapter(tableView: tableView)
-        
+  
         
         //bind tableview
         viewModel
             .items
             .asDriver()
             .drive(onNext: { (items) in
-                adapter.setData(newData: items)
+                self.adapter.setData(newData: items)
             })
             .disposed(by: bag)
         
