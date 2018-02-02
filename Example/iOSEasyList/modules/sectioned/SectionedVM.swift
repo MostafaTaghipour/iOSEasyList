@@ -19,42 +19,33 @@ class SectionedVM{
     
     func loadTopMovies(page:Int){
         
-        
-        
         API.getTopRatedMovies(page: page, success: { movies in
             
             let newItems : [MovieSection] = movies.grouped(by: { (movie) -> Character in
-                return (movie.title.characters.first)!
+                return (movie.title.first)!
             })
                 .sorted{ $0.key < $1.key }
-                .map{  MovieSection(firstLetter: String($0.key), items: $0.value) }
-            
-            
+                .map{  MovieSection(firstLetter: String($0.key), movies: $0.value) }
             
             
             self.items.value=newItems
             
         }) { error in
         }
-        
     }
-    
 }
 
 
 
 struct MovieSection {
     let firstLetter:String
-    let items:[Movie]
+    let movies:[Movie]
 }
 
-extension MovieSection:SectionDiffable{
-    var sectionItems: Array<Diffable> {
-        return items
-    }
-    
-    var diffIdentifier: String {
-        return firstLetter
+extension MovieSection:Section{
+    var items: Array<Any> {
+        return movies
     }
 }
+
 

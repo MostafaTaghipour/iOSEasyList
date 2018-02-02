@@ -28,6 +28,12 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView,ReusableView {
         }
     }
     
+    var collapsed:Bool = false {
+        didSet{
+              arrowImage.image = collapsed ? #imageLiteral(resourceName: "expand") : #imageLiteral(resourceName: "collapse")
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = UIColor.header
@@ -37,7 +43,6 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView,ReusableView {
     
     func bind(data:MovieExpandableSection) {
         label.text = data.header
-        arrowImage.image = data.collapsed ? #imageLiteral(resourceName: "expand") : #imageLiteral(resourceName: "collapse")
     }
     
     @objc private func tapHeader(_ gestureRecognizer: UITapGestureRecognizer) {

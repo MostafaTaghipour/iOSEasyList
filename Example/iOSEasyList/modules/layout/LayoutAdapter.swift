@@ -13,7 +13,7 @@ class LayoutAdapter: CollectionViewAdapter {
     
     var layoutType:LayoutType = .Linear
     
-    override init(collectionView: UICollectionView) {
+     init(collectionView: UICollectionView) {
         super.init(collectionView: collectionView)
         
         configCell={(cv, ip, item) -> (UICollectionViewCell) in

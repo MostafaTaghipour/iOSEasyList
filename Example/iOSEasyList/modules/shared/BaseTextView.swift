@@ -201,7 +201,7 @@ open class BaseTextView: UITextView {
     @objc open func textDidChange(notification: Notification) {
         if let notificationObject = notification.object as? BaseTextView {
             if notificationObject === self {
-                if maxLength > 0 && text.characters.count > maxLength {
+                if maxLength > 0 && text.count > maxLength {
                     
                     let endIndex = text.index(text.startIndex, offsetBy: maxLength)
                     text = String(text[..<endIndex])
@@ -211,7 +211,7 @@ open class BaseTextView: UITextView {
                 
                 
                 if let placeholderLabel = _placeholderLabel {
-                    placeholderLabel.isHidden = self.text.characters.count > 0
+                    placeholderLabel.isHidden = self.text.count > 0
                 }
             }
         }
@@ -221,7 +221,7 @@ open class BaseTextView: UITextView {
     open func textDidChanged(textView: UITextView) {
         
         if let placeholderLabel = _placeholderLabel {
-            placeholderLabel.isHidden = textView.text.characters.count > 0
+            placeholderLabel.isHidden = textView.text.count > 0
         }
     }
     
@@ -250,7 +250,7 @@ open class BaseTextView: UITextView {
         _placeholderLabel!.font = self.font
         _placeholderLabel!.textColor = placeholderColor
         
-        _placeholderLabel!.isHidden = self.text.characters.count > 0
+        _placeholderLabel!.isHidden = self.text.count > 0
         
         self.addSubview(_placeholderLabel!)
         self.resizePlaceholder()

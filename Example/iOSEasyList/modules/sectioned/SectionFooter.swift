@@ -27,6 +27,6 @@ class SectionFooter: UITableViewHeaderFooterView,ReusableView {
     }
     
     func bind(data:MovieSection) {
-        label.text = "There are \(data.items.count) movies that started with the letter \(data.firstLetter)"
+        label.text = "There are \(data.movies.count) movies that started with the letter \(data.firstLetter)"
     }
 }

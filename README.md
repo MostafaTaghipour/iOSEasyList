@@ -17,7 +17,7 @@ Everything you need to implement your own lists:
 - Configurable animations
 - Sectioned
 - Pagination
-- Expandable
+- Collapsible
 - Loading footer
 - Various UICollectionView layouts
 - Empty View
@@ -45,28 +45,30 @@ pod 'iOSEasyList'
 ## Usage
 1. Define your model
 ```swift
-struct Movie : Diffable {
+struct Movie{
     let id : String
     let title : String
+}
 
+//optional: If you want to use Diffable capabilities (e.g. automatic animations like delete, insert, move , reload)
+//           inherit 'Diffable' ptotocol
+extension Movie:Diffable{
     var diffIdentifier: String {
         return id
     }
 
-    //optional
+    //optional: this function need for automatic reload
     func isEqual(to object: Any) -> Bool {
         guard let to = object as? Model else { return false }
 
         return self.id==to.id &&
-        self.title==to.title
+               self.title==to.title
     }
 }
 ```
 
 2. Define `TableViewAdapter` in ViewController
 ```swift
-let tableView: UITableView
-
 lazy var adapter: TableViewAdapter = { [unowned self] in
     let adapter=TableViewAdapter(tableView: tableView) { (tv, ip, item) -> (UITableViewCell) in
         let cell = tv.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: ip) as! MovieCell
@@ -83,7 +85,10 @@ lazy var adapter: TableViewAdapter = { [unowned self] in
 
 3. Set Data
 ```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
     adapter.setData(newData: items, animated: true)
+}
 ```
 
 4. That's it, for more samples please see example project

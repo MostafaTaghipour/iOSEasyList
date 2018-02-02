@@ -9,10 +9,14 @@
 import UIKit
 import iOSEasyList
 
-class ExpandableAdapter: TableViewAdapter {
-    private let HEADER_HEIGHT:CGFloat=44
-    weak var delegate:ExpandableAdapterDelegate?
+class ExpandableAdapter: TableViewAdapter,Collapsible {
+
+    var collapseByDefault: Bool = true
+    var type: CollapseType = .normal
     
+    
+    private let HEADER_HEIGHT:CGFloat=44
+   
      init(tableView: UITableView) {
         super.init(tableView: tableView)
         
@@ -37,19 +41,13 @@ class ExpandableAdapter: TableViewAdapter {
         headerView.data=getSection(section: section, itemType: MovieExpandableSection.self)
         headerView.section=section
         headerView.delegate = self
+        headerView.collapsed = isCollapsed(section: section)
         return headerView
     }
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return HEADER_HEIGHT
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = getSection(section: section, itemType: MovieExpandableSection.self)
-            else { return 0 }
-        
-        return  section.collapsed ? 0 : section.sectionItems.count
     }
     
     
@@ -68,11 +66,8 @@ class ExpandableAdapter: TableViewAdapter {
 
 extension ExpandableAdapter:CollapsibleTableViewHeaderDelegate{
     func toggleSection(_ header: CollapsibleTableViewHeader, section: Int) {
-        self.delegate?.toggleSection(position: section)
+       toggleState(section: section)
     }
 }
 
 
-protocol ExpandableAdapterDelegate:class {
-   func toggleSection(position: Int)
-}

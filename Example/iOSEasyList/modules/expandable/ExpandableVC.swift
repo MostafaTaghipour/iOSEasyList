@@ -37,9 +37,7 @@ class ExpandableVC: UIViewController {
        
         //config adapter
         let adapter=ExpandableAdapter(tableView: tableView)
-        adapter.delegate=self
-        
-        
+
         //bind tableview
         viewModel
             .items
@@ -52,10 +50,5 @@ class ExpandableVC: UIViewController {
     }
 }
 
-extension ExpandableVC:ExpandableAdapterDelegate{
-    func toggleSection(position: Int) {
-        viewModel.toggleSection(position: position)
-    }
-}
 
 

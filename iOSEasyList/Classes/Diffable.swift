@@ -29,9 +29,9 @@ public extension Diffable {
 }
 
 
-public struct IndexMovement : Hashable {
-    public var from = 0
-    public var to = 0
+ struct IndexMovement : Hashable {
+     var from = 0
+     var to = 0
     
     public var hashValue: Int {
         get {
@@ -44,36 +44,36 @@ public struct IndexMovement : Hashable {
     }
 }
 
-public struct DiffIndexResult {
-    public var deletes = IndexSet()
-    public var inserts = IndexSet()
-    public var reloads = IndexSet()
-    public var moveIndexes = Set<IndexMovement>()
+ struct DiffIndexResult {
+     var deletes = IndexSet()
+     var inserts = IndexSet()
+     var reloads = IndexSet()
+     var moveIndexes = Set<IndexMovement>()
     
-    public var changedCount : Int {
+     var changedCount : Int {
         get{
             return deletes.count + inserts.count + moveIndexes.count
         }
     }
     
-    public mutating func deletes(at index:Int) -> Void {
+     mutating func deletes(at index:Int) -> Void {
         deletes.insert(index)
     }
     
-    public mutating func insert(at index:Int) -> Void {
+     mutating func insert(at index:Int) -> Void {
         inserts.insert(index)
     }
     
-    public mutating func reloads(at index:Int) -> Void {
+     mutating func reloads(at index:Int) -> Void {
         reloads.insert(index)
     }
     
-    public mutating func moveIndex(at move:IndexMovement) -> Void {
+     mutating func moveIndex(at move:IndexMovement) -> Void {
         moveIndexes.insert(move)
     }
 }
 
-public func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexResult {
+ func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexResult {
     var diffResult = DiffIndexResult()
     var oldIds = [String](), newIds = [String](), oldIndexMap = [String:Int](), newIndexMap = [String:Int](), expectIndexes = Array<String>()
     
@@ -130,12 +130,21 @@ public func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexRe
 
 
 //MARK:- SectionDiffable
-public protocol SectionDiffable : Diffable {
-    var sectionItems : Array<Diffable> { get }
-    
+public protocol Section{
+    var items : Array<Any> { get }
 }
 
-public struct RowsMovement : Hashable {
+public protocol SectionDiffable :Section,  Diffable {
+    var diffableItems : Array<Diffable> { get }
+}
+
+extension SectionDiffable{
+    public var items: Array<Any>{
+        return diffableItems
+    }
+}
+
+ struct RowsMovement : Hashable {
     public var from = IndexPath()
     public var to = IndexPath()
     
@@ -150,7 +159,7 @@ public struct RowsMovement : Hashable {
     }
 }
 
-public struct DiffSectionResult {
+ struct DiffSectionResult {
     public var deletes = [IndexPath]()
     public var inserts = [IndexPath]()
     public var reloads = [IndexPath]()
@@ -162,24 +171,24 @@ public struct DiffSectionResult {
         }
     }
     
-    public mutating func deletes(at indexPath:IndexPath) -> Void {
+     mutating func deletes(at indexPath:IndexPath) -> Void {
         deletes.append(indexPath)
     }
     
-    public mutating func insert(at indexPath:IndexPath) -> Void {
+     mutating func insert(at indexPath:IndexPath) -> Void {
         inserts.append(indexPath)
     }
     
-    public mutating func reloads(at indexPath:IndexPath) -> Void {
+     mutating func reloads(at indexPath:IndexPath) -> Void {
         reloads.append(indexPath)
     }
     
-    public mutating func moveRow(at move:RowsMovement) -> Void {
+     mutating func moveRow(at move:RowsMovement) -> Void {
         moveRows.insert(move)
     }
 }
 
-public func sectionedDiff(from:Array<SectionDiffable>, to:Array<SectionDiffable>) -> (DiffIndexResult, DiffSectionResult) {
+ func sectionedDiff(from:Array<SectionDiffable>, to:Array<SectionDiffable>) -> (DiffIndexResult, DiffSectionResult) {
     
     //计算一级数组的变化
     let indexedResult = indexedDiff(from: from, to: to)
@@ -189,12 +198,12 @@ public func sectionedDiff(from:Array<SectionDiffable>, to:Array<SectionDiffable>
         if indexedResult.deletes.contains(section) {
             continue
         }
-        let fromArray = item.sectionItems
+        let fromArray = item.diffableItems
         var toArray:[Diffable]?
         var toSection = NSNotFound
         for (index, sectionInfo) in to.enumerated() {
             if sectionInfo.diffIdentifier == item.diffIdentifier {
-                toArray = sectionInfo.sectionItems
+                toArray = sectionInfo.diffableItems
                 toSection = index
                 break
             }
@@ -224,17 +233,6 @@ public func sectionedDiff(from:Array<SectionDiffable>, to:Array<SectionDiffable>
 }
 
 
-
-struct SingleSection : SectionDiffable {
-    
-    var diffIdentifier: String = ""
-    
-    var sectionItems: Array<Diffable> = [Diffable]()
-    
-    init(items:[Diffable]) {
-        sectionItems=items
-    }
-}
 
 
 

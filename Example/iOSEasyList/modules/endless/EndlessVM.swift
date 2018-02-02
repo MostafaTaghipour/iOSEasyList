@@ -55,8 +55,6 @@ class EndlessVM{
         
         popularLoading = true
         
-        
-        
         API.getPopularMovies(page:  page+1, success: { populars in
             
             self.popularLoading=false

@@ -12,13 +12,22 @@ public protocol Filterable {
 }
 
 public extension Filterable{
-  private var adapter:ListAdapter?{
-        return self as? ListAdapter
+    private var adapter:ListAdapter{
+        guard let adapter = self as? ListAdapter else {
+            fatalError("Filterable must implemment by ListAdapter")
+        }
+        
+        return adapter
+    }
+    internal func setData(newData:[Any]?){
+        if  !adapter._private_lockNoneFilteredItems{
+            adapter._private_originalItems=newData
+        }
     }
     func setFilterConstraint(constraint: String?){
-        adapter?._private_lockNoneFilteredItems=true
+        adapter._private_lockNoneFilteredItems=true
         
-        var list = adapter?._private_noneFilteredItems
+        var list = adapter._private_originalItems
         
         if let query=constraint , !query.isEmpty{
             list = list?.filter{
@@ -26,8 +35,8 @@ public extension Filterable{
             }
         }
         
-        adapter?.setData(newData: list)
+        adapter.setData(newData: list)
         
-        adapter?._private_lockNoneFilteredItems=false
+        adapter._private_lockNoneFilteredItems=false
     }
 }

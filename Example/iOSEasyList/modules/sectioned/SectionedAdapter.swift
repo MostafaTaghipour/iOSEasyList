@@ -44,10 +44,10 @@ class SectionedAdapter: TableViewAdapter {
     
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return getData(itemType: MovieSection.self)?.map {$0.firstLetter}
+        return getSections(itemType: MovieSection.self)?.map {$0.firstLetter}
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return getData(itemType: MovieSection.self)?.map {$0.firstLetter}.index(of: title) ?? 0
+        return getSections(itemType: MovieSection.self)?.map {$0.firstLetter}.index(of: title) ?? 0
     }
 }

@@ -340,6 +340,7 @@
 		D947452217EE9CF7F39D5F25C226DACC /* CredentialsPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D16005AB1FB793A129A44C4FCE942 /* CredentialsPlugin.swift */; };
 		D97203A90BF688E18012EC2D3BB9D709 /* RxCocoa-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D40244310AD7C5143A2FF41AE72987 /* RxCocoa-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D9FC52EA8FE8C64CB9AB212C1496D1E5 /* RxTableViewReactiveArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A90A53B3E29226768DE8F6D19BF32A /* RxTableViewReactiveArrayDataSource.swift */; };
+		DAC8A42920231DE5001E8530 /* Collapsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8A42820231DE5001E8530 /* Collapsible.swift */; };
 		DAE408672020D24400B50BA0 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE408602020D23A00B50BA0 /* BaseCell.swift */; };
 		DAE408682020D24400B50BA0 /* CollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE408632020D23A00B50BA0 /* CollectionViewAdapter.swift */; };
 		DAE408692020D24400B50BA0 /* Diffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE4085E2020D23900B50BA0 /* Diffable.swift */; };
@@ -888,6 +889,7 @@
 		D840DB08F26876961235174BED653F29 /* Kingfisher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kingfisher-dummy.m"; sourceTree = "<group>"; };
 		D8C1E15A3D605A213E47E1D8B6784712 /* UISwipeGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UISwipeGestureRecognizer+RxGesture.swift"; path = "Pod/Classes/iOS/UISwipeGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
 		D8DD885A18EE950AB6D378C58E5E932E /* UIGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+RxGesture.swift"; path = "Pod/Classes/iOS/UIGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		DAC8A42820231DE5001E8530 /* Collapsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Collapsible.swift; path = iOSEasyList/Classes/Collapsible.swift; sourceTree = "<group>"; };
 		DAE408592020D23900B50BA0 /* UICollectionViewStaggeredLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UICollectionViewStaggeredLayout.swift; path = iOSEasyList/Classes/UICollectionViewStaggeredLayout.swift; sourceTree = "<group>"; };
 		DAE4085A2020D23900B50BA0 /* ListHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListHelper.swift; path = iOSEasyList/Classes/ListHelper.swift; sourceTree = "<group>"; };
 		DAE4085B2020D23900B50BA0 /* Filterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Filterable.swift; path = iOSEasyList/Classes/Filterable.swift; sourceTree = "<group>"; };
@@ -1482,6 +1484,7 @@
 				DAE408602020D23A00B50BA0 /* BaseCell.swift */,
 				DAE408632020D23A00B50BA0 /* CollectionViewAdapter.swift */,
 				DAE4085E2020D23900B50BA0 /* Diffable.swift */,
+				DAC8A42820231DE5001E8530 /* Collapsible.swift */,
 				DAE4085B2020D23900B50BA0 /* Filterable.swift */,
 				DAE4085F2020D23900B50BA0 /* ListAdapter.swift */,
 				DAE4085A2020D23900B50BA0 /* ListHelper.swift */,
@@ -2491,6 +2494,7 @@
 				744BE7023FCDDC9BA4B162ACFBF174A1 /* iOSEasyList-dummy.m in Sources */,
 				DAE4086D2020D24400B50BA0 /* ListUpdater.swift in Sources */,
 				DAE4086B2020D24400B50BA0 /* ListAdapter.swift in Sources */,
+				DAC8A42920231DE5001E8530 /* Collapsible.swift in Sources */,
 				DAE4086C2020D24400B50BA0 /* ListHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

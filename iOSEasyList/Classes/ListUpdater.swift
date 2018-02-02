@@ -10,16 +10,19 @@ import UIKit
 
 let defaultThrottle : Float = 0.1
 
-public class ListUpdater {
+class ListUpdater {
     
-    public fileprivate(set) var dataSource = [SectionDiffable]()
+    fileprivate(set) var dataSource = [Section]()
     private let throttle = ThrottleTask(throttle: defaultThrottle)
     
     public var isAnimationEnable:Bool=true
     
+    var animationConfig=AnimationConfig(reload: .fade, insert: .top, delete: .top)
+    
     fileprivate func update(dataSource:[SectionDiffable], animation:@escaping ((DiffIndexResult, DiffSectionResult)) -> Void) -> Void {
         throttle.add {
-            let diff = sectionedDiff(from: self.dataSource, to: dataSource)
+            
+            let diff = sectionedDiff(from:self.dataSource as! Array<SectionDiffable>, to: dataSource)
             self.dataSource = dataSource
             DispatchQueue.main.sync {
                 animation(diff)
@@ -28,41 +31,45 @@ public class ListUpdater {
         
     }
     
-}
-
-public class TableViewUpdater: ListUpdater {
-    public weak var tableView:UITableView?
-    public var animationConfig=AnimationConfig(reload: .fade, insert: .top, delete: .top)
-    
-    public init(tableView:UITableView,animationConfig:AnimationConfig? = nil) {
-        self.tableView = tableView
-        
-        if let animConfig = animationConfig {
-            self.animationConfig=animConfig
-        }
-    }
-    
-    
     // reload
-    public func reload(newData:[Any],animated:Bool=true) -> Void {
+    func reload(newData:[Any],animated:Bool=true) -> Void {
+        
+        if newData.isEmpty{
+            if dataSource.isEmpty{
+                return
+            }
+            
+            if dataSource is [SectionDiffable], let sections = newData as? [SectionDiffable]{
+                reload(sections: sections, animated: animated)
+            }
+                
+            else if let sections = newData as? [Section]{
+                immedateReload(sections: sections)
+            }
+            return
+        }
+        
         if let sections=newData as? [SectionDiffable]{
             reload(sections: sections, animated: animated)
         }
         else if let rows=newData as? [Diffable]{
-            reload(rows: rows, animated: animated)
-        }
-    }
-    
-    public func reload(rows:[Diffable],animated:Bool=true) -> Void {
-        if animated{
-            animateReload(rows: rows)
+            reload(items: rows, animated: animated)
         }
         else{
-            immedateReload(rows: rows)
+            immedateReload(newData: newData)
         }
     }
     
-    public func reload(sections:[SectionDiffable],animated:Bool=true) -> Void {
+    func reload(items:[Diffable],animated:Bool=true) -> Void {
+        if animated{
+            animateReload(items: items)
+        }
+        else{
+            immedateReload(items: items)
+        }
+    }
+    
+    func reload(sections:[SectionDiffable],animated:Bool=true) -> Void {
         if animated{
             animateReload(sections: sections)
         }
@@ -73,20 +80,87 @@ public class TableViewUpdater: ListUpdater {
     
     
     // animateReload
-    public func animateReload(newData:[Any]) -> Void {
+    func animateReload(newData:[Any]) -> Void {
+        
+        if newData.isEmpty{
+            if dataSource.isEmpty{
+                return
+            }
+            
+            if !(dataSource is [SectionDiffable]) , let sections = newData as? [Section]{
+                immedateReload(sections: sections)
+                return
+            }
+        }
+        
         if let sections=newData as? [SectionDiffable]{
             animateReload(sections: sections)
         }
         else if let rows=newData as? [Diffable]{
-            animateReload(rows: rows)
+            animateReload(items: rows)
+        }
+        else{
+            immedateReload(newData: newData)
         }
     }
     
-    public func animateReload(rows:[Diffable]) -> Void {
-        self.animateReload(sections: [SingleSection(items: rows)])
+    func animateReload(items:[Diffable]) -> Void {
+        self.animateReload(sections: [SingleSectionDiffable(items: items)])
     }
     
-    public func animateReload(sections:[SectionDiffable]) -> Void {
+    
+    // immedateReload
+    func immedateReload(newData:[Any]) -> Void {
+        if let sections=newData as? [SectionDiffable]{
+            immedateReload(sections: sections)
+        }
+        else if let rows=newData as? [Diffable]{
+            immedateReload(items: rows)
+        }
+        else if let sections = newData as? [Section]{
+            immedateReload(sections: sections)
+        }
+        else{
+            immedateReload(sections: [SingleSection(items: newData)])
+        }
+    }
+    
+    func immedateReload(items:[Diffable]) -> Void {
+        immedateReload(sections: [SingleSectionDiffable(items: items)])
+    }
+    
+    
+    //Must Implement
+    func animateReload(sections:[SectionDiffable]) -> Void {}
+    func immedateReload(sections:[Section]) -> Void {  }
+    
+    func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation){}
+    func notifyDeleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation){}
+    func notifyReloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation){}
+    func notifyMoveSection(at section: Int, to newSection: Int){}
+    func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
+    func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
+    func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
+    func notifyMoveItem(at IndexPathindexPath: IndexPath, to newIndexPath: IndexPath){}
+
+}
+
+class TableViewUpdater: ListUpdater {
+    weak var tableView:UITableView?
+    
+    
+    init(tableView:UITableView,animationConfig:AnimationConfig? = nil) {
+        super.init()
+        self.tableView = tableView
+        
+        if let animConfig = animationConfig {
+            self.animationConfig=animConfig
+        }
+    }
+    
+    
+    
+    override func animateReload(sections:[SectionDiffable]) -> Void {
         if self.tableView?.window == nil || !isAnimationEnable {
             self.immedateReload(sections: sections)
             return
@@ -116,80 +190,47 @@ public class TableViewUpdater: ListUpdater {
         }
     }
     
-    
-    // immedateReload
-    public func immedateReload(newData:[Any]) -> Void {
-        if let sections=newData as? [SectionDiffable]{
-            immedateReload(sections: sections)
-        }
-        else if let rows=newData as? [Diffable]{
-            immedateReload(rows: rows)
-        }
-    }
-    
-    public func immedateReload(rows:[Diffable]) -> Void {
-        immedateReload(sections: [SingleSection(items: rows)])
-    }
-    
-    public func immedateReload(sections:[SectionDiffable]) -> Void {
+    override func immedateReload(sections:[Section]) -> Void {
         self.dataSource = sections
         self.tableView?.reloadData()
     }
     
+    override func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+        tableView?.insertSections(sections, with: animation)
+    }
+    override func notifyDeleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+        tableView?.deleteSections(sections, with: animation)
+    }
+    override func notifyReloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+        tableView?.reloadSections(sections, with: animation)
+    }
+    override func notifyMoveSection(at section: Int, to newSection: Int){
+        tableView?.moveSection(section, toSection: newSection)
+    }
+    override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+         tableView?.insertRows(at: indexPaths, with: animation)
+    }
+    override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+        tableView?.deleteRows(at: indexPaths, with: animation)
+    }
+    override func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+        tableView?.reloadRows(at: indexPaths, with: animation)
+    }
+    override func notifyMoveItem(at indexPath: IndexPath, to newIndexPath: IndexPath){
+        tableView?.moveRow(at: indexPath, to: newIndexPath)
+    }
+   
 }
 
-public class CollectionViewUpdater: ListUpdater {
+class CollectionViewUpdater: ListUpdater {
     
-    public weak var collectionView:UICollectionView?
+    weak var collectionView:UICollectionView?
     
-    public init(collectionView:UICollectionView) {
+    init(collectionView:UICollectionView) {
         self.collectionView = collectionView
     }
     
-    // reload
-    public func reload(newData:[Any],animated:Bool=true) -> Void {
-        if let sections=newData as? [SectionDiffable]{
-            reload(sections: sections, animated: animated)
-        }
-        else if let items=newData as? [Diffable]{
-            reload(items: items, animated: animated)
-        }
-    }
-    
-    public func reload(items:[Diffable],animated:Bool=true) -> Void {
-        if animated{
-            animateReload(items: items)
-        }
-        else{
-            immedateReload(items: items)
-        }
-    }
-    
-    public func reload(sections:[SectionDiffable],animated:Bool=true) -> Void {
-        if animated{
-            animateReload(sections: sections)
-        }
-        else{
-            immedateReload(sections: sections)
-        }
-    }
-    
-    // animateReload
-    public func animateReload(newData:[Any]) -> Void {
-        if let sections=newData as? [SectionDiffable]{
-            animateReload(sections: sections)
-        }
-        else if let items=newData as? [Diffable]{
-            animateReload(items: items)
-        }
-    }
-    
-    public func animateReload(items:[Diffable]) -> Void {
-        self.animateReload(sections: [SingleSection(items: items)])
-    }
-    
-    
-    public func animateReload(sections:[SectionDiffable]) -> Void {
+    override func animateReload(sections:[SectionDiffable]) -> Void {
         if self.collectionView?.window == nil || !isAnimationEnable {
             self.immedateReload(sections: sections)
             return
@@ -214,23 +255,36 @@ public class CollectionViewUpdater: ListUpdater {
         }
     }
     
-    // immedateReload
-    public func immedateReload(newData:[Any]) -> Void {
-        if let sections=newData as? [SectionDiffable]{
-            immedateReload(sections: sections)
-        }
-        else if let items=newData as? [Diffable]{
-            immedateReload(items: items)
-        }
-    }
     
-    public func immedateReload(items:[Diffable]) -> Void {
-        immedateReload(sections: [SingleSection(items: items)])
-    }
-    
-    public func immedateReload(sections:[SectionDiffable]) -> Void {
+    override func immedateReload(sections:[Section]) -> Void {
         self.dataSource = sections
         self.collectionView?.reloadData()
+    }
+    
+
+    override func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
+        collectionView?.insertSections(sections)
+    }
+    override func notifyDeleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
+        collectionView?.deleteSections(sections)
+    }
+    override func notifyReloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
+        collectionView?.reloadSections(sections)
+    }
+    override func notifyMoveSection(at section: Int, to newSection: Int){
+       collectionView?.moveSection(section, toSection: newSection)
+    }
+    override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+        collectionView?.insertItems(at: indexPaths)
+    }
+    override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+        collectionView?.deleteItems(at: indexPaths)
+    }
+    override func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+        collectionView?.reloadItems(at: indexPaths)
+    }
+    override func notifyMoveItem(at indexPath: IndexPath, to newIndexPath: IndexPath){
+        collectionView?.moveItem(at: indexPath, to: newIndexPath)
     }
 }
 
@@ -239,17 +293,17 @@ public class CollectionViewUpdater: ListUpdater {
 
 class ThrottleTask {
     
-    public typealias Task = () -> Void
+    typealias Task = () -> Void
     
     private var throttle:Float = 0.0
     private var tasks = [Task]()
     private let queue = DispatchQueue(label: "throttle.task.serial.queue", attributes: .init(rawValue:0))
     
-    public init(throttle:Float) {
+    init(throttle:Float) {
         self.throttle = throttle
     }
     
-    public func add(task:@escaping Task) -> Void {
+    func add(task:@escaping Task) -> Void {
         objc_sync_enter(self)
         self.tasks.append(task)
         if self.tasks.count == 1 {
@@ -271,6 +325,7 @@ class ThrottleTask {
 }
 
 
+
 public struct AnimationConfig {
     let reload : UITableViewRowAnimation
     let insert : UITableViewRowAnimation
@@ -284,4 +339,21 @@ public struct AnimationConfig {
         self.delete=delete
     }
     
+}
+
+
+
+struct SingleSection: Section {
+    var items: Array<Any>
+}
+
+struct SingleSectionDiffable : SectionDiffable {
+    
+    var diffIdentifier: String = ""
+    
+    var diffableItems: Array<Diffable> = [Diffable]()
+    
+    init(items:[Diffable]) {
+        self.diffableItems=items
+    }
 }

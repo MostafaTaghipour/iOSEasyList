@@ -66,10 +66,10 @@ extension Movie:Diffable{
     var diffIdentifier: String {
         return "\(id)-\(title)"
     }
-    
+
     func isEqual(to object: Any) -> Bool {
         guard let to = object as? Movie else { return false }
-        
+
         return self==to
     }
 }
