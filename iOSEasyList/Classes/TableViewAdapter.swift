@@ -28,7 +28,7 @@ open class TableViewAdapter : ListAdapter , UITableViewDataSource,UITableViewDel
     
     // variables
     public weak var tableView :UITableView?
-  
+    
     public  typealias configCellType = (_ tableView:UITableView,_ indexPath: IndexPath,_ data:Any?)->(UITableViewCell)
     public  var configCell:configCellType = {(_,_,_) in
         fatalError("Subclasses need to implement the configCell variable.")
@@ -45,6 +45,13 @@ open class TableViewAdapter : ListAdapter , UITableViewDataSource,UITableViewDel
         }
     }
     
+    public override func getVisibleItems(in section: Int) -> [Any] {
+        return tableView?.indexPathsForVisibleRows?.map{getItem(indexPath: $0)}.flatMap{$0} ?? []
+    }
+    
+    public override func getVisibleItems<T>(in section: Int, itemType: T.Type) -> [T]? {
+        return getVisibleItems(in: section) as? [T]
+    }
     
     //MARK:- UITableViewDataSource,UITableViewDelegate
     open func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,7 +63,7 @@ open class TableViewAdapter : ListAdapter , UITableViewDataSource,UITableViewDel
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = getItemCount(in: section)
         if let collapsible = self as? Collapsible{
-          return collapsible.isCollapsed(section: section) ? 0 : count
+            return collapsible.isCollapsed(section: section) ? 0 : count
         }
         
         return count

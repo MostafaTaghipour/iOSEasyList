@@ -59,7 +59,7 @@ public extension Collapsible{
         }
         
         adapter._private_collapseSections.append(section)
-       adapter.reloadSection(at: section)
+        adapter.reloadSection(at: section)
     }
     func expand(section:Int){
         if (section >= adapter.sectionCount) || isExpanded(section: section){
@@ -115,3 +115,4 @@ public enum CollapseType {
     case normal
     case accordion
 }
+

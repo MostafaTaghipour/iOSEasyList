@@ -10,7 +10,7 @@ import UIKit
 
 public class UICollectionViewFullWidthFlowLayout : UICollectionViewFlowLayout {
     
-   public func fullWidth(forBounds bounds:CGRect) -> CGFloat {
+    public func fullWidth(forBounds bounds:CGRect) -> CGFloat {
         
         let contentInsets = self.collectionView!.contentInset
         
@@ -32,3 +32,4 @@ public class UICollectionViewFullWidthFlowLayout : UICollectionViewFlowLayout {
         return false
     }
 }
+

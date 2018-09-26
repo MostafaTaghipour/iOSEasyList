@@ -28,7 +28,7 @@ open class CollectionViewAdapter : ListAdapter , UICollectionViewDataSource,UICo
     
     // variables
     public weak var collectionView :UICollectionView?
-
+    
     public  typealias configCellType = (_ collectionView:UICollectionView,_ indexPath: IndexPath,_ data:Any?)->(UICollectionViewCell)
     public  var configCell:configCellType = {(_,_,_) in
         fatalError("Subclasses need to implement the configCell variable.")
@@ -44,7 +44,15 @@ open class CollectionViewAdapter : ListAdapter , UICollectionViewDataSource,UICo
             
         }
     }
-   
+    
+    public override func getVisibleItems(in section: Int) -> [Any] {
+        return collectionView?.indexPathsForVisibleItems.map{getItem(indexPath: $0)}.flatMap{$0} ?? []
+    }
+    
+    public override func getVisibleItems<T>(in section: Int, itemType: T.Type) -> [T]? {
+        return getVisibleItems(in: section) as? [T]
+    }
+    
     //MARK:- UICollectionViewDataSource,UICollectionViewDelegate
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         let count = sectionCount
@@ -69,3 +77,4 @@ open class CollectionViewAdapter : ListAdapter , UICollectionViewDataSource,UICo
         self.didSelectItem?(getItem(indexPath: indexPath), indexPath)
     }
 }
+

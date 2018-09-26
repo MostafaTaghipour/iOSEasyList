@@ -29,9 +29,9 @@ public extension Diffable {
 }
 
 
- struct IndexMovement : Hashable {
-     var from = 0
-     var to = 0
+struct IndexMovement : Hashable {
+    var from = 0
+    var to = 0
     
     public var hashValue: Int {
         get {
@@ -44,36 +44,36 @@ public extension Diffable {
     }
 }
 
- struct DiffIndexResult {
-     var deletes = IndexSet()
-     var inserts = IndexSet()
-     var reloads = IndexSet()
-     var moveIndexes = Set<IndexMovement>()
+struct DiffIndexResult {
+    var deletes = IndexSet()
+    var inserts = IndexSet()
+    var reloads = IndexSet()
+    var moveIndexes = Set<IndexMovement>()
     
-     var changedCount : Int {
+    var changedCount : Int {
         get{
             return deletes.count + inserts.count + moveIndexes.count
         }
     }
     
-     mutating func deletes(at index:Int) -> Void {
+    mutating func deletes(at index:Int) -> Void {
         deletes.insert(index)
     }
     
-     mutating func insert(at index:Int) -> Void {
+    mutating func insert(at index:Int) -> Void {
         inserts.insert(index)
     }
     
-     mutating func reloads(at index:Int) -> Void {
+    mutating func reloads(at index:Int) -> Void {
         reloads.insert(index)
     }
     
-     mutating func moveIndex(at move:IndexMovement) -> Void {
+    mutating func moveIndex(at move:IndexMovement) -> Void {
         moveIndexes.insert(move)
     }
 }
 
- func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexResult {
+func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexResult {
     var diffResult = DiffIndexResult()
     var oldIds = [String](), newIds = [String](), oldIndexMap = [String:Int](), newIndexMap = [String:Int](), expectIndexes = Array<String>()
     
@@ -144,7 +144,7 @@ extension SectionDiffable{
     }
 }
 
- struct RowsMovement : Hashable {
+struct RowsMovement : Hashable {
     public var from = IndexPath()
     public var to = IndexPath()
     
@@ -159,7 +159,7 @@ extension SectionDiffable{
     }
 }
 
- struct DiffSectionResult {
+struct DiffSectionResult {
     public var deletes = [IndexPath]()
     public var inserts = [IndexPath]()
     public var reloads = [IndexPath]()
@@ -171,24 +171,24 @@ extension SectionDiffable{
         }
     }
     
-     mutating func deletes(at indexPath:IndexPath) -> Void {
+    mutating func deletes(at indexPath:IndexPath) -> Void {
         deletes.append(indexPath)
     }
     
-     mutating func insert(at indexPath:IndexPath) -> Void {
+    mutating func insert(at indexPath:IndexPath) -> Void {
         inserts.append(indexPath)
     }
     
-     mutating func reloads(at indexPath:IndexPath) -> Void {
+    mutating func reloads(at indexPath:IndexPath) -> Void {
         reloads.append(indexPath)
     }
     
-     mutating func moveRow(at move:RowsMovement) -> Void {
+    mutating func moveRow(at move:RowsMovement) -> Void {
         moveRows.insert(move)
     }
 }
 
- func sectionedDiff(from:Array<SectionDiffable>, to:Array<SectionDiffable>) -> (DiffIndexResult, DiffSectionResult) {
+func sectionedDiff(from:Array<SectionDiffable>, to:Array<SectionDiffable>) -> (DiffIndexResult, DiffSectionResult) {
     
     //计算一级数组的变化
     let indexedResult = indexedDiff(from: from, to: to)
@@ -268,3 +268,4 @@ extension Date : Diffable {
         return self.description
     }
 }
+

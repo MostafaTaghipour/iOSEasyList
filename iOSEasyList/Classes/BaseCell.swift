@@ -20,7 +20,7 @@ public extension ReusableView {
 
 
 open class BaseTableViewCell<T>:UITableViewCell,ReusableView {
-   public var data:T?{
+    public var data:T?{
         didSet{
             guard let data = data else { return  }
             bind(data: data)
@@ -39,7 +39,7 @@ open class BaseTableViewCell<T>:UITableViewCell,ReusableView {
 }
 
 open class BaseCollectionViewCell<T>:UICollectionViewCell,ReusableView {
-   public var data:T?{
+    public var data:T?{
         didSet{
             guard let data = data else { return  }
             bind(data: data)
@@ -55,3 +55,4 @@ open class BaseCollectionViewCell<T>:UICollectionViewCell,ReusableView {
     open func initialization(){}
     open func bind(data:T){}
 }
+

@@ -13,7 +13,7 @@ open class ListAdapter : NSObject{
     var _private_originalItems:[Any]?
     var _private_collapseSections:[Int]=[Int]()
     var _private_lockNoneFilteredItems=false
-
+    
     
     var emptyView:UIView?
     var listUpdater:ListUpdater!
@@ -31,13 +31,16 @@ open class ListAdapter : NSObject{
     }
     
     public var sectionCount: Int {
-        return getSections().count
+        return listUpdater.dataSource.count
     }
     
-    public  var itemCount: Int{
+    public var itemCount: Int{
         return listUpdater.dataSource.map{$0.items.count}.reduce(0, +)
     }
     
+    public var isEmpty: Bool{
+        return itemCount == 0
+    }
     
     init(listUpdater:ListUpdater) {
         self.listUpdater=listUpdater
@@ -95,6 +98,14 @@ open class ListAdapter : NSObject{
     
     public func getItems<T>(in section:Int=0,itemType: T.Type)->[T]?{
         return getItems(in: section) as? [T]
+    }
+    
+    public func getVisibleItems(in section:Int=0)->[Any]{
+        return []
+    }
+    
+    public func getVisibleItems<T>(in section:Int=0,itemType: T.Type)->[T]?{
+        return []
     }
     
     public func getItem(indexPath:IndexPath)->Any?{
@@ -163,3 +174,4 @@ open class ListAdapter : NSObject{
         listUpdater.notifyMoveItem(at: indexPath, to: newIndexPath)
     }
 }
+

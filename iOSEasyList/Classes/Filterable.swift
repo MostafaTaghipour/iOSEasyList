@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol Filterable {
-    func filterItem (_ constraint: String,_ item: Any)-> Bool 
+    func filterItem (_ constraint: String,_ item: Any)-> Bool
 }
 
 public extension Filterable{

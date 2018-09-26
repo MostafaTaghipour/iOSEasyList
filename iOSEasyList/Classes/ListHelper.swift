@@ -14,7 +14,7 @@ extension UITableView{
     }
     
     
-   public var rowCount:Int{
+    public var rowCount:Int{
         
         var rows: Int = 0
         
@@ -25,25 +25,25 @@ extension UITableView{
         return rows
     }
     
-  public  var selectedRowCount:Int{
-       return indexPathsForSelectedRows?.count ?? 0
+    public  var selectedRowCount:Int{
+        return indexPathsForSelectedRows?.count ?? 0
     }
     
     
-   public var isEmpty:Bool{
+    public var isEmpty:Bool{
         return visibleCells.count < 1
     }
     
     
-  public  func isIndexPathValid(indexPath:IndexPath)->Bool{
+    public  func isIndexPathValid(indexPath:IndexPath)->Bool{
         return isSectionValid(section: indexPath.section) && isRowValid(section: indexPath.section,  row: indexPath.row)
     }
     
-  public  func isSectionValid(section:Int)->Bool{
+    public  func isSectionValid(section:Int)->Bool{
         return section >= 0 && section < numberOfSections
     }
     
-  public  func isRowValid(section:Int=0,row:Int)->Bool{
+    public  func isRowValid(section:Int=0,row:Int)->Bool{
         return row >= 0 && row < numberOfRows(inSection: section)
     }
     
@@ -52,7 +52,7 @@ extension UITableView{
 
 extension UICollectionView{
     
-   public var itemCount:Int{
+    public var itemCount:Int{
         
         var rows: Int = 0
         
@@ -63,25 +63,25 @@ extension UICollectionView{
         return rows
     }
     
-  public  var selectedItemCount:Int{
+    public  var selectedItemCount:Int{
         return indexPathsForSelectedItems?.count ?? 0
     }
     
     
-  public  var isEmpty:Bool{
+    public  var isEmpty:Bool{
         return visibleCells.count < 1
     }
     
     
-   public func isIndexPathValid(indexPath:IndexPath)->Bool{
+    public func isIndexPathValid(indexPath:IndexPath)->Bool{
         return isSectionValid(section: indexPath.section) && isRowValid(section: indexPath.section,  row: indexPath.row)
     }
     
-   public func isSectionValid(section:Int)->Bool{
+    public func isSectionValid(section:Int)->Bool{
         return section >= 0 && section < numberOfSections
     }
     
-   public func isRowValid(section:Int=0,row:Int)->Bool{
+    public func isRowValid(section:Int=0,row:Int)->Bool{
         return row >= 0 && row < numberOfItems(inSection:  section)
     }
     
@@ -89,7 +89,7 @@ extension UICollectionView{
 
 
 extension Array {
-  public  func grouped<T>(by criteria: (Element) -> T) -> [T: [Element]] {
+    public  func grouped<T>(by criteria: (Element) -> T) -> [T: [Element]] {
         var groups = [T: [Element]]()
         for element in self {
             let key = criteria(element)

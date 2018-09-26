@@ -82,7 +82,6 @@ class EndlessVC: UIViewController {
             .controlEvent(.valueChanged)
             .subscribe(onNext: { _ in
                 self.viewModel.loadTopMovies(page: 0,clearOld: true)
-                self.scrollListener.reset()
             })
             .disposed(by: bag)
         
@@ -99,6 +98,8 @@ class EndlessVC: UIViewController {
                 }
                 else if self.refreshControl.isRefreshing && !loading{
                     self.refreshControl.endRefreshing()
+                    
+                    self.scrollListener.reset()
                 }
                 else{
                     self.tableView.loadingFooter=loading

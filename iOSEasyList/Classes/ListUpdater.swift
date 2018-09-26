@@ -142,7 +142,7 @@ class ListUpdater {
     func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
     func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
     func notifyMoveItem(at IndexPathindexPath: IndexPath, to newIndexPath: IndexPath){}
-
+    
 }
 
 class TableViewUpdater: ListUpdater {
@@ -208,7 +208,7 @@ class TableViewUpdater: ListUpdater {
         tableView?.moveSection(section, toSection: newSection)
     }
     override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
-         tableView?.insertRows(at: indexPaths, with: animation)
+        tableView?.insertRows(at: indexPaths, with: animation)
     }
     override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
         tableView?.deleteRows(at: indexPaths, with: animation)
@@ -219,7 +219,7 @@ class TableViewUpdater: ListUpdater {
     override func notifyMoveItem(at indexPath: IndexPath, to newIndexPath: IndexPath){
         tableView?.moveRow(at: indexPath, to: newIndexPath)
     }
-   
+    
 }
 
 class CollectionViewUpdater: ListUpdater {
@@ -261,7 +261,7 @@ class CollectionViewUpdater: ListUpdater {
         self.collectionView?.reloadData()
     }
     
-
+    
     override func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
         collectionView?.insertSections(sections)
     }
@@ -272,7 +272,7 @@ class CollectionViewUpdater: ListUpdater {
         collectionView?.reloadSections(sections)
     }
     override func notifyMoveSection(at section: Int, to newSection: Int){
-       collectionView?.moveSection(section, toSection: newSection)
+        collectionView?.moveSection(section, toSection: newSection)
     }
     override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
         collectionView?.insertItems(at: indexPaths)
@@ -357,3 +357,4 @@ struct SingleSectionDiffable : SectionDiffable {
         self.diffableItems=items
     }
 }
+

@@ -18,7 +18,7 @@ fileprivate struct AssociatedKeys {
 
 extension UITableView {
     
-   public var loadingFooterView:UIView?{
+    public var loadingFooterView:UIView?{
         get{
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.loadingFooterView) as? UIView else {
                 return nil
@@ -29,7 +29,7 @@ extension UITableView {
             objc_setAssociatedObject(self, &AssociatedKeys.loadingFooterView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-  public  var retryFooterView:UIView?{
+    public  var retryFooterView:UIView?{
         get{
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.retryFooterView) as? UIView else {
                 return nil
@@ -41,7 +41,7 @@ extension UITableView {
         }
     }
     
-  public  var loadingFooter:Bool{
+    public  var loadingFooter:Bool{
         
         get{
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.loadingFooter) as? Bool else {
@@ -63,14 +63,14 @@ extension UITableView {
             }
             else if !newValue && tableFooterView == loadingFooterView{
                 let point: CGPoint = contentOffset
-                tableFooterView=nil
+                tableFooterView=UIView()
                 contentOffset = point
             }
         }
         
     }
     
-  public  var retryFooter:Bool{
+    public  var retryFooter:Bool{
         
         get{
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.retryFooter) as? Bool else {
@@ -92,7 +92,7 @@ extension UITableView {
             }
             else if !newValue && tableFooterView == retryFooterView{
                 let point: CGPoint = contentOffset
-                tableFooterView=nil
+                tableFooterView=UIView()
                 contentOffset = point
             }
         }
