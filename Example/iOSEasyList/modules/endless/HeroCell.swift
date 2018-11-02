@@ -24,7 +24,7 @@ class HeroCell: BaseTableViewCell<Movie> {
         gradiantView.layer.masksToBounds=true
     }
     override func bind(data:Movie) {
-        yearLabel.text="\(data.release_date[...3]) | \(data.original_language.uppercased())"
+        yearLabel.text="\(data.release_date![...3]) | \(data.original_language!.uppercased())"
         titleLabel.text=data.title
         descLabel.text=data.overview
         imgView.loadImageFromWeb(url: data.backdrop_path,width: 500)

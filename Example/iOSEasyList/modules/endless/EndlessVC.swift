@@ -41,7 +41,7 @@ class EndlessVC: UIViewController {
         tableView.removeExtraLines()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 125
         
         //setup adapter

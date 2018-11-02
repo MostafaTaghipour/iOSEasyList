@@ -26,7 +26,7 @@ class ExpandableVM{
         API.getTopRatedMovies(page: page, success: { movies in
 
             let newItems : [MovieExpandableSection] = movies.grouped(by: { (movie) in
-                return String(movie.release_date[...3])
+                return String(movie.release_date![...3])
             })
                 .sorted{
                     $0.key > $1.key

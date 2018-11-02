@@ -55,10 +55,10 @@ class ExpandableAdapter: TableViewAdapter,Collapsible {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let sectionHeaderHeight: CGFloat = HEADER_HEIGHT
         if scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0 {
-            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+            scrollView.contentInset = UIEdgeInsets(top: -scrollView.contentOffset.y, left: 0, bottom: 0, right: 0)
         }
         else if scrollView.contentOffset.y >= sectionHeaderHeight {
-            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0)
+            scrollView.contentInset = UIEdgeInsets(top: -sectionHeaderHeight, left: 0, bottom: 0, right: 0)
         }
         
     }

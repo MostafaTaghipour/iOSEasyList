@@ -111,7 +111,7 @@ open class BaseTextView: UITextView {
         }
     }
     
-    fileprivate weak var heightConstraint: NSLayoutConstraint?
+    fileprivate var heightConstraint: NSLayoutConstraint?
     
     // Initialize
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -125,7 +125,7 @@ open class BaseTextView: UITextView {
     }
     
     open override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: 38)
+        return CGSize(width: UIView.noIntrinsicMetric, height: 38)
     }
     
     func associateConstraints() {
@@ -144,14 +144,14 @@ open class BaseTextView: UITextView {
     fileprivate func commonInit() {
         self.contentMode = .redraw
         associateConstraints()
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: NSNotification.Name.UITextViewTextDidEndEditing, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: UITextView.textDidEndEditingNotification, object: self)
     }
     
     // Remove notification observer when deinit
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidChange, object: self)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidEndEditing, object: self)
+        NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: self)
+        NotificationCenter.default.removeObserver(self, name: UITextView.textDidEndEditingNotification, object: self)
     }
     
     // Calculate height of textview

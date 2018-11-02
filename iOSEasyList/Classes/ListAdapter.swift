@@ -131,43 +131,43 @@ open class ListAdapter : NSObject{
         setData(newData: getSections(),animated:animated)
     }
     
-    func insertSection(at section: Int, with animation: UITableViewRowAnimation = .automatic){
+    func insertSection(at section: Int, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyInsertSections(at: IndexSet([section]), with: animation)
     }
-    func deleteSection(at section: Int, with animation: UITableViewRowAnimation = .automatic){
+    func deleteSection(at section: Int, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyDeleteSections(at: IndexSet([section]), with: animation)
     }
-    func reloadSection(at section: Int, with animation: UITableViewRowAnimation = .automatic){
+    func reloadSection(at section: Int, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyReloadSections(at: IndexSet([section]), with: animation)
     }
-    func insertSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+    func insertSections(at sections: IndexSet, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyInsertSections(at: sections, with: animation)
     }
-    func deleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+    func deleteSections(at sections: IndexSet, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyDeleteSections(at: sections, with: animation)
     }
-    func reloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+    func reloadSections(at sections: IndexSet, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyReloadSections(at: sections, with: animation)
     }
     func moveSection(at section: Int, to newSection: Int){
         listUpdater.notifyMoveSection(at: section, to: newSection)
     }
-    func insertItem(at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic){
+    func insertItem(at indexPath: IndexPath, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyInsertItems(at: [indexPath], with: animation)
     }
-    func deleteItem(at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic){
+    func deleteItem(at indexPath: IndexPath, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyDeleteItems(at: [indexPath], with: animation)
     }
-    func reloadItem(at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic){
+    func reloadItem(at indexPath: IndexPath, with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyReloadItems(at: [indexPath], with: animation)
     }
-    func insertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+    func insertItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyInsertItems(at: indexPaths, with: animation)
     }
-    func deleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+    func deleteItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyDeleteItems(at: indexPaths, with: animation)
     }
-    func reloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+    func reloadItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation = .automatic){
         listUpdater.notifyReloadItems(at: indexPaths, with: animation)
     }
     func moveItem(at indexPath: IndexPath, to newIndexPath: IndexPath){

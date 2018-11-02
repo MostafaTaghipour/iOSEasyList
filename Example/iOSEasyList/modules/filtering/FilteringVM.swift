@@ -27,11 +27,11 @@ class FilteringVM{
         list.sort(by: { (left, right) -> Bool in
             switch(by){
             case .Title:
-                return left.title < right.title
+                return left.title! < right.title!
             case .Language:
-                return left.original_language < right.original_language
+                return left.original_language! < right.original_language!
             case .Year:
-                return left.release_date < right.release_date
+                return left.release_date! < right.release_date!
             }
         })
         items.value = list

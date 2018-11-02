@@ -12,7 +12,7 @@ import iOSEasyList
 class FilteringAdapter: TableViewAdapter,Filterable {
     
     func filterItem(_ constraint: String, _ item: Any) -> Bool {
-        return (item as? Movie)?.title.lowercased().contains(constraint.lowercased()) ?? false
+        return (item as? Movie)?.title?.lowercased().contains(constraint.lowercased()) ?? false
     }
     
     init(tableView:UITableView) {

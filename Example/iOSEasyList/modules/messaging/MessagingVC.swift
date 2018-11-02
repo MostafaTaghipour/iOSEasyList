@@ -59,7 +59,7 @@ class MessagingVC: UIViewController {
         tableView.removeExtraLines()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 125
         
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)  //reverse tableview scroll (you also need reverse cells)

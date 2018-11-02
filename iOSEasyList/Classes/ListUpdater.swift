@@ -134,13 +134,13 @@ class ListUpdater {
     func animateReload(sections:[SectionDiffable]) -> Void {}
     func immedateReload(sections:[Section]) -> Void {  }
     
-    func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation){}
-    func notifyDeleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation){}
-    func notifyReloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation){}
+    func notifyInsertSections(at sections: IndexSet, with animation: UITableView.RowAnimation){}
+    func notifyDeleteSections(at sections: IndexSet, with animation: UITableView.RowAnimation){}
+    func notifyReloadSections(at sections: IndexSet, with animation: UITableView.RowAnimation){}
     func notifyMoveSection(at section: Int, to newSection: Int){}
-    func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
-    func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
-    func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){}
+    func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){}
+    func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){}
+    func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){}
     func notifyMoveItem(at IndexPathindexPath: IndexPath, to newIndexPath: IndexPath){}
     
 }
@@ -195,25 +195,25 @@ class TableViewUpdater: ListUpdater {
         self.tableView?.reloadData()
     }
     
-    override func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+    override func notifyInsertSections(at sections: IndexSet, with animation: UITableView.RowAnimation = .automatic){
         tableView?.insertSections(sections, with: animation)
     }
-    override func notifyDeleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+    override func notifyDeleteSections(at sections: IndexSet, with animation: UITableView.RowAnimation = .automatic){
         tableView?.deleteSections(sections, with: animation)
     }
-    override func notifyReloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation = .automatic){
+    override func notifyReloadSections(at sections: IndexSet, with animation: UITableView.RowAnimation = .automatic){
         tableView?.reloadSections(sections, with: animation)
     }
     override func notifyMoveSection(at section: Int, to newSection: Int){
         tableView?.moveSection(section, toSection: newSection)
     }
-    override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+    override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation = .automatic){
         tableView?.insertRows(at: indexPaths, with: animation)
     }
-    override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+    override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation = .automatic){
         tableView?.deleteRows(at: indexPaths, with: animation)
     }
-    override func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic){
+    override func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation = .automatic){
         tableView?.reloadRows(at: indexPaths, with: animation)
     }
     override func notifyMoveItem(at indexPath: IndexPath, to newIndexPath: IndexPath){
@@ -262,25 +262,25 @@ class CollectionViewUpdater: ListUpdater {
     }
     
     
-    override func notifyInsertSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
+    override func notifyInsertSections(at sections: IndexSet, with animation: UITableView.RowAnimation){
         collectionView?.insertSections(sections)
     }
-    override func notifyDeleteSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
+    override func notifyDeleteSections(at sections: IndexSet, with animation: UITableView.RowAnimation){
         collectionView?.deleteSections(sections)
     }
-    override func notifyReloadSections(at sections: IndexSet, with animation: UITableViewRowAnimation){
+    override func notifyReloadSections(at sections: IndexSet, with animation: UITableView.RowAnimation){
         collectionView?.reloadSections(sections)
     }
     override func notifyMoveSection(at section: Int, to newSection: Int){
         collectionView?.moveSection(section, toSection: newSection)
     }
-    override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+    override func notifyInsertItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){
         collectionView?.insertItems(at: indexPaths)
     }
-    override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+    override func notifyDeleteItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){
         collectionView?.deleteItems(at: indexPaths)
     }
-    override func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+    override func notifyReloadItems(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){
         collectionView?.reloadItems(at: indexPaths)
     }
     override func notifyMoveItem(at indexPath: IndexPath, to newIndexPath: IndexPath){
@@ -327,13 +327,13 @@ class ThrottleTask {
 
 
 public struct AnimationConfig {
-    let reload : UITableViewRowAnimation
-    let insert : UITableViewRowAnimation
-    let delete : UITableViewRowAnimation
+    let reload : UITableView.RowAnimation
+    let insert : UITableView.RowAnimation
+    let delete : UITableView.RowAnimation
     
-    public init( reload : UITableViewRowAnimation,
-                 insert : UITableViewRowAnimation,
-                 delete : UITableViewRowAnimation) {
+    public init( reload : UITableView.RowAnimation,
+                 insert : UITableView.RowAnimation,
+                 delete : UITableView.RowAnimation) {
         self.reload = reload
         self.insert=insert
         self.delete=delete

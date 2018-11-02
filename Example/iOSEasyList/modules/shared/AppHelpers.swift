@@ -32,7 +32,8 @@ extension String {
 
 
 extension UIImageView{
-    func loadImageFromWeb(url:String,width:Int = 150){
+    func loadImageFromWeb(url:String?,width:Int = 200){
+        guard let url = url else { return  }
         kf.indicatorType = .activity
        kf.setImage(with: URL(string: API.baseImageUrl + "w\(width)" + url))
     }

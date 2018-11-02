@@ -22,8 +22,6 @@ class EndlessVM{
         error.value=nil
         loading.value=true
         
-                        print("----------> load page \(page)")
-        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             
             

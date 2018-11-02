@@ -34,7 +34,7 @@ class PopularCell: BaseTableViewCell<PopularMovies> {
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset=UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
     }
     
    override func bind(data:PopularMovies) {

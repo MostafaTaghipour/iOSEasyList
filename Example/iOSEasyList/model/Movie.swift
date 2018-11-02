@@ -37,12 +37,12 @@ extension PopularMovies:Diffable{
 
 struct Movie:Codable{
     let id:Int
-    let poster_path: String
-    let overview: String
-    let release_date: String
-    let original_language : String
-    let title: String
-    let backdrop_path: String
+    let poster_path: String?
+    let overview: String?
+    let release_date: String?
+    let original_language : String?
+    let title: String?
+    let backdrop_path: String?
     
     let ratio = Float.random(lower: 0.6, 1.0)
    

@@ -46,7 +46,7 @@ open class CollectionViewAdapter : ListAdapter , UICollectionViewDataSource,UICo
     }
     
     public override func getVisibleItems(in section: Int) -> [Any] {
-        return collectionView?.indexPathsForVisibleItems.map{getItem(indexPath: $0)}.flatMap{$0} ?? []
+        return collectionView?.indexPathsForVisibleItems.map{getItem(indexPath: $0)}.compactMap{$0} ?? []
     }
     
     public override func getVisibleItems<T>(in section: Int, itemType: T.Type) -> [T]? {

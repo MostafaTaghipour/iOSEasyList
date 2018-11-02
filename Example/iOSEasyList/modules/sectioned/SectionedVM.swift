@@ -22,7 +22,7 @@ class SectionedVM{
         API.getTopRatedMovies(page: page, success: { movies in
             
             let newItems : [MovieSection] = movies.grouped(by: { (movie) -> Character in
-                return (movie.title.first)!
+                return (movie.title?.first)!
             })
                 .sorted{ $0.key < $1.key }
                 .map{  MovieSection(firstLetter: String($0.key), movies: $0.value) }
