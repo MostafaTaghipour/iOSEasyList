@@ -105,7 +105,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Author
 
-Mostafa Taghipour, mostafa.taghipour@ymail.com
+Mostafa Taghipour, mostafa@taghipour.me
 
 ## License
 

@@ -73,8 +73,8 @@ class MessagingVC: UIViewController {
         viewModel
             .items
             .asDriver()
-            .drive(onNext: { (items) in
-                self.adapter.setData(newData: items)
+            .drive(onNext: { [weak self] (items) in
+                self?.adapter.setData(newData: items)
             })
             .disposed(by: bag)
         
@@ -83,21 +83,23 @@ class MessagingVC: UIViewController {
         .rx.tapGesture()
         .when(.recognized)
         .asObservable()
-            .subscribe(onNext: { (gesture) in
-                self.view.endEditing(true)
+            .subscribe(onNext: { [weak self]  (gesture) in
+                self?.view.endEditing(true)
             })
         .disposed(by: bag)
         
         //subscribe keyboard frame changes
         RxKeyboard.instance.visibleHeight
-            .drive(onNext: { keyboardVisibleHeight in
+            .drive(onNext: { [weak self]  keyboardVisibleHeight in
 
-                let  safeAreaInset = keyboardVisibleHeight <= self.view.safeAreaInsets.bottom ? 0 : self.view.safeAreaInsets.bottom
+                guard let sSelf = self else {return}
+                
+                let  safeAreaInset = keyboardVisibleHeight <= sSelf.view.safeAreaInsets.bottom ? 0 : sSelf.view.safeAreaInsets.bottom
 
-                self.bottomConstraint.constant = -keyboardVisibleHeight + safeAreaInset
+                sSelf.bottomConstraint.constant = -keyboardVisibleHeight + safeAreaInset
                 
                 UIView.animate(withDuration: 0.0) {
-                    self.view.layoutIfNeeded()
+                    sSelf.view.layoutIfNeeded()
                 }
 
             })
@@ -111,6 +113,7 @@ class MessagingVC: UIViewController {
         tableView.contentInset = newInset
         tableView.contentOffset.y = tableView.contentOffset.y + (oldInset.top - newInset.top)
     }
+    
     
 }
 

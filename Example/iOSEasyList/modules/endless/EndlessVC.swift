@@ -51,13 +51,13 @@ class EndlessVC: UIViewController {
         //tableview scroll listener
         scrollListener =  PaginatedTableScrollListener(
             tableView: tableView,
-            onLoadMore: { (page) in
-                self.viewModel.loadTopMovies(page: page)
+            onLoadMore: { [weak self] (page) in
+                self?.viewModel.loadTopMovies(page: page)
         },
             onPageChanged: { (currentPage) in
                 print("current page: \(currentPage)")
         })
-        
+
         scrollListener.pageSize=20
         
         //add footer view
@@ -66,6 +66,7 @@ class EndlessVC: UIViewController {
         tableView.retryFooterView=retryFooter
         
         
+      
         //bind tableview
         viewModel
             .items
@@ -80,8 +81,8 @@ class EndlessVC: UIViewController {
         refreshControl
             .rx
             .controlEvent(.valueChanged)
-            .subscribe(onNext: { _ in
-                self.viewModel.loadTopMovies(page: 0,clearOld: true)
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.loadTopMovies(page: 0,clearOld: true)
             })
             .disposed(by: bag)
         
@@ -90,20 +91,24 @@ class EndlessVC: UIViewController {
         viewModel
             .loading
             .asDriver()
-            .drive(onNext: { (loading) in
-                
-                if self.tableView.isEmpty{
-                    self.loadingView.isHidden = !loading
-                    self.loadingView.activityIndicator.animating = loading
+            .drive(onNext: { [weak self] (loading) in
+
+                guard let sSelf = self else{
+                    return
                 }
-                else if self.refreshControl.isRefreshing && !loading{
-                    self.refreshControl.endRefreshing()
-                    
-                    self.scrollListener.reset()
+                
+                if sSelf.tableView.isEmpty{
+                    sSelf.loadingView.isHidden = !loading
+                    sSelf.loadingView.activityIndicator.animating = loading
+                }
+                else if sSelf.refreshControl.isRefreshing && !loading{
+                    sSelf.refreshControl.endRefreshing()
+
+                    sSelf.scrollListener.reset()
                 }
                 else{
-                    self.tableView.loadingFooter=loading
-                    (self.tableView.tableFooterView as? ProgressFooter)?.activityIndicator.animating=loading
+                    sSelf.tableView.loadingFooter=loading
+                    (sSelf.tableView.tableFooterView as? ProgressFooter)?.activityIndicator.animating=loading
                 }
             })
             .disposed(by: bag)
@@ -113,29 +118,35 @@ class EndlessVC: UIViewController {
         viewModel
             .error
             .asDriver()
-            .drive(onNext: { (error) in
+            .drive(onNext: { [weak self] (error) in
+
+                guard let sSelf = self else{
+                    return
+                }
                 
                 let hasError = error != nil
-                
-                if self.tableView.isEmpty{
-                    self.errorView.isHidden = !hasError
-                    self.errorView.errorCause.text=error
+
+                if sSelf.tableView.isEmpty{
+                    sSelf.errorView.isHidden = !hasError
+                    sSelf.errorView.errorCause.text=error
                 }
                 else{
-                    self.tableView.retryFooter=hasError
-                    (self.tableView.tableFooterView as? RetryFooter)?.loadMoreErrorText.text = error
+                    sSelf.tableView.retryFooter=hasError
+                    (sSelf.tableView.tableFooterView as? RetryFooter)?.loadMoreErrorText.text = error
                 }
             })
             .disposed(by: bag)
         
+
         
         //handle retry
         errorView
             .retryButton
             .rx
             .tap
-            .asObservable()
-            .bind(onNext: loadNextPage)
+            .subscribe(onNext:{ [weak self] in
+                self?.loadNextPage()
+            })
             .disposed(by: bag)
         
         retryFooter
@@ -156,6 +167,7 @@ class EndlessVC: UIViewController {
     @objc func scrollTop(){
         tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top , animated: true)
     }
+    
 }
 
 

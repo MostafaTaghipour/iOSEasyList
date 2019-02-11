@@ -44,8 +44,8 @@ class AnimationVC: UIViewController {
         viewModel
             .items
             .asDriver()
-            .drive(onNext: { (dates) in
-                self.adapter.setData(newData: dates)
+            .drive(onNext: { [weak self] (dates) in
+                self?.adapter.setData(newData: dates)
             })
             .disposed(by: bag)
     }
@@ -78,6 +78,7 @@ class AnimationVC: UIViewController {
             viewModel.undoLatsRemovedItem()
         }
     }
+    
 }
 
 extension AnimationVC:AnimationAdapterDelegate{
@@ -119,4 +120,6 @@ extension AnimationVC:AnimationAdapterDelegate{
     func updateMultipleDeleteButtonTitle() {
          self.deleteMultipleItemButton?.title = tableView.selectedRowCount > 0 ? "Delete \(tableView.selectedRowCount) item" : ""
     }
+    
+    
 }

@@ -48,8 +48,8 @@ class FilteringVC: UIViewController {
         viewModel
             .items
             .asDriver()
-            .drive(onNext: { (items) in
-                self.adapter.setData(newData: items)
+            .drive(onNext: { [weak self] (items) in
+               self?.adapter.setData(newData: items)
             })
             .disposed(by: bag)
     }
@@ -85,6 +85,8 @@ class FilteringVC: UIViewController {
         // 5
         self.present(orderMenu, animated: true, completion: nil)
     }
+    
+
 }
 
 extension FilteringVC:UISearchResultsUpdating{

@@ -6,51 +6,46 @@
 //  Copyright © 2018 RainyDay. All rights reserved.
 //
 
-import UIKit
-import RxSwift
 import RxGesture
+import RxSwift
+import UIKit
 
 class SectionedVC: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
 
-    var viewModel:SectionedVM!
-    var bag=DisposeBag()
-    
+    var viewModel: SectionedVM!
+    var bag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.backgroundColor
-        self.title="Sectioned"
-        
-        viewModel=SectionedVM()
-        
-        //config tableview
+
+        view.backgroundColor = UIColor.backgroundColor
+        title = "Sectioned"
+
+        viewModel = SectionedVM()
+
+        // config tableview
         tableView.register(UINib(nibName: MovieCell.className, bundle: nil), forCellReuseIdentifier: MovieCell.reuseIdentifier)
         tableView.register(UINib(nibName: SectionFooter.className, bundle: nil), forHeaderFooterViewReuseIdentifier: SectionFooter.reuseIdentifier)
-        tableView.allowsSelection=false
+        tableView.allowsSelection = false
         tableView.removeExtraLines()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 125
-        
-        let adapter=SectionedAdapter(tableView: tableView)
-        
 
-        //bind tableview
+        let adapter = SectionedAdapter(tableView: tableView)
+
+        // bind tableview
         viewModel
             .items
             .asDriver()
-            .drive(onNext: { (movieSections) in
+            .drive(onNext: { movieSections in
                 adapter.setData(newData: movieSections)
             })
             .disposed(by: bag)
+    }
+    
+    
  
-           }
 }
-
-
-
-
-
-

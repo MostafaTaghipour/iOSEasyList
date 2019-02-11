@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--MessagingVC-->
         <scene sceneID="lBb-OH-nn8">
             <objects>
-                <viewController storyboardIdentifier="MessagingVC" id="V0T-cx-aW4" customClass="MessagingVC" customModule="ListExample_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessagingVC" id="V0T-cx-aW4" customClass="MessagingVC" customModule="iOSEasyList_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2in-h0-9xu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVW-PS-g4l" customClass="MessageBar" customModule="ListExample_iOS" customModuleProvider="target">
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVW-PS-g4l" customClass="MessageBar" customModule="iOSEasyList_Example" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="603" width="375" height="44"/>
                                         <viewLayoutGuide key="safeArea" id="UXC-ky-mlt"/>
                                         <items/>
@@ -33,9 +33,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="top" secondItem="SKT-FH-LdL" secondAttribute="top" id="2LO-cj-ADv"/>
                                     <constraint firstAttribute="bottom" secondItem="tVW-PS-g4l" secondAttribute="bottom" id="2ZL-p0-5Pl"/>
                                     <constraint firstAttribute="bottom" secondItem="SKT-FH-LdL" secondAttribute="bottom" id="7KD-aZ-wpt"/>
-                                    <constraint firstItem="SKT-FH-LdL" firstAttribute="top" secondItem="cpB-Ws-XB3" secondAttribute="top" id="9nl-oa-kJ8"/>
                                     <constraint firstAttribute="trailing" secondItem="tVW-PS-g4l" secondAttribute="trailing" id="H7G-Xr-e8g"/>
                                     <constraint firstAttribute="trailing" secondItem="SKT-FH-LdL" secondAttribute="trailing" id="fhm-Ct-h7J"/>
                                     <constraint firstItem="SKT-FH-LdL" firstAttribute="leading" secondItem="cpB-Ws-XB3" secondAttribute="leading" id="wWM-IQ-whN"/>

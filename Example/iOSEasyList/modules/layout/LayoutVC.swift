@@ -49,8 +49,8 @@ class LayoutVC: UIViewController {
         viewModel
             .items
             .asDriver()
-            .drive(onNext: { (items) in
-                self.adapter.setData(newData: items)
+            .drive(onNext: { [weak self] (items) in
+                self?.adapter.setData(newData: items)
             })
             .disposed(by: bag)
     }
@@ -137,6 +137,7 @@ class LayoutVC: UIViewController {
         
         collectionView.reloadData()
     }
+    
 }
 
 enum  LayoutType:Int {
