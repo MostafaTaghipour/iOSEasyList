@@ -53,7 +53,7 @@ extension LayoutAdapter:UICollectionViewDelegateFlowLayout{
             let fullWidthLayout=collectionViewLayout as! UICollectionViewFullWidthFlowLayout
             return CGSize(width: fullWidthLayout.fullWidth(forBounds: collectionView.bounds), height:120)
         case .Grid:
-            let numberOfCell:CGFloat = 2
+            let numberOfCell:CGFloat =  UIDevice.current.orientation == UIDeviceOrientation.portrait ? 2 : 3
             let layout=collectionViewLayout as! UICollectionViewFlowLayout
             let contextWidth = collectionView.bounds.width - (layout.sectionInset.left + layout.sectionInset.right)
             let width = (contextWidth / numberOfCell) - layout.minimumInteritemSpacing

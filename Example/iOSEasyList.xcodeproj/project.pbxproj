@@ -11,6 +11,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		D34B262FB2C2B0167B95828E /* Pods_iOSEasyList_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4AA40DA993F5B728653FF1 /* Pods_iOSEasyList_Example.framework */; };
+		DA2C09132214A30100A70E66 /* MessagingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2C09122214A30100A70E66 /* MessagingVC.xib */; };
 		DAE408762020D3C300B50BA0 /* FilteringAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE408752020D3C300B50BA0 /* FilteringAdapter.swift */; };
 		DAF1AF09201CF35B000D12DA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AF07201CF2EF000D12DA /* API.swift */; };
 		DAF1AF0A201CF35B000D12DA /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AF08201CF2EF000D12DA /* MovieApi.swift */; };
@@ -57,7 +58,6 @@
 		DAF1AF33201CF35B000D12DA /* MessageReceiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF1AEE5201CF2EF000D12DA /* MessageReceiveCell.xib */; };
 		DAF1AF34201CF35B000D12DA /* MessageSendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEE6201CF2EF000D12DA /* MessageSendCell.swift */; };
 		DAF1AF35201CF35B000D12DA /* MessageSendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF1AEE7201CF2EF000D12DA /* MessageSendCell.xib */; };
-		DAF1AF36201CF35B000D12DA /* messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF1AEE8201CF2EF000D12DA /* messaging.storyboard */; };
 		DAF1AF38201CF35B000D12DA /* MessagingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEEA201CF2EF000D12DA /* MessagingVC.swift */; };
 		DAF1AF39201CF35B000D12DA /* MessagingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEEB201CF2EF000D12DA /* MessagingVM.swift */; };
 		DAF1AF3A201CF35B000D12DA /* SectionedAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1AEED201CF2EF000D12DA /* SectionedAdapter.swift */; };
@@ -100,6 +100,7 @@
 		7AB5E73A10D97655BBA6C0DA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A6B0C07E8F69ECD2E69B1F2F /* iOSEasyList.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = iOSEasyList.podspec; path = ../iOSEasyList.podspec; sourceTree = "<group>"; };
 		CCCE98BAD9ACB2025B78A1C1 /* Pods-iOSEasyList_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEasyList_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSEasyList_Tests/Pods-iOSEasyList_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		DA2C09122214A30100A70E66 /* MessagingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagingVC.xib; sourceTree = "<group>"; };
 		DAE408752020D3C300B50BA0 /* FilteringAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringAdapter.swift; sourceTree = "<group>"; };
 		DAF1AEB3201CF2EE000D12DA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DAF1AEB4201CF2EE000D12DA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		DAF1AEE5201CF2EF000D12DA /* MessageReceiveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceiveCell.xib; sourceTree = "<group>"; };
 		DAF1AEE6201CF2EF000D12DA /* MessageSendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSendCell.swift; sourceTree = "<group>"; };
 		DAF1AEE7201CF2EF000D12DA /* MessageSendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSendCell.xib; sourceTree = "<group>"; };
-		DAF1AEE8201CF2EF000D12DA /* messaging.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = messaging.storyboard; sourceTree = "<group>"; };
 		DAF1AEEA201CF2EF000D12DA /* MessagingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingVC.swift; sourceTree = "<group>"; };
 		DAF1AEEB201CF2EF000D12DA /* MessagingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingVM.swift; sourceTree = "<group>"; };
 		DAF1AEED201CF2EF000D12DA /* SectionedAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedAdapter.swift; sourceTree = "<group>"; };
@@ -390,9 +390,9 @@
 				DAF1AEE5201CF2EF000D12DA /* MessageReceiveCell.xib */,
 				DAF1AEE6201CF2EF000D12DA /* MessageSendCell.swift */,
 				DAF1AEE7201CF2EF000D12DA /* MessageSendCell.xib */,
-				DAF1AEE8201CF2EF000D12DA /* messaging.storyboard */,
 				DAF1AEEA201CF2EF000D12DA /* MessagingVC.swift */,
 				DAF1AEEB201CF2EF000D12DA /* MessagingVM.swift */,
+				DA2C09122214A30100A70E66 /* MessagingVC.xib */,
 			);
 			path = messaging;
 			sourceTree = "<group>";
@@ -506,6 +506,7 @@
 				DAF1AF2F201CF35B000D12DA /* StaggeredCell.xib in Resources */,
 				DAF1AF45201CF35B000D12DA /* ErrorView.xib in Resources */,
 				DAF1AF0F201CF35B000D12DA /* AnimationVC.xib in Resources */,
+				DA2C09132214A30100A70E66 /* MessagingVC.xib in Resources */,
 				DAF1AF3C201CF35B000D12DA /* SectionedVC.xib in Resources */,
 				DAF1AF1A201CF35B000D12DA /* PopularMovieCell.xib in Resources */,
 				DAF1AF13201CF35B000D12DA /* EndlessVC.xib in Resources */,
@@ -521,7 +522,6 @@
 				DAF1AF1C201CF35B000D12DA /* CollapsibleTableViewHeader.xib in Resources */,
 				DAF1AF43201CF35B000D12DA /* EmptyView.xib in Resources */,
 				DAF1AF3F201CF35B000D12DA /* SectionFooter.xib in Resources */,
-				DAF1AF36201CF35B000D12DA /* messaging.storyboard in Resources */,
 				DAF1AF4B201CF35B000D12DA /* ProgressFooter.xib in Resources */,
 				DAF1AF35201CF35B000D12DA /* MessageSendCell.xib in Resources */,
 				DAF1AF27201CF35B000D12DA /* GridCell.xib in Resources */,

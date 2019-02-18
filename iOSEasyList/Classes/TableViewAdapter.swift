@@ -70,7 +70,8 @@ open class TableViewAdapter : ListAdapter , UITableViewDataSource,UITableViewDel
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return configCell(tableView,indexPath,getItem(indexPath: indexPath))
+        let cell: (UITableViewCell) = configCell(tableView,indexPath,getItem(indexPath: indexPath))
+        return cell
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

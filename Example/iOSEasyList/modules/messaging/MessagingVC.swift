@@ -19,6 +19,16 @@ class MessagingVC: UIViewController {
     var viewModel:MessagingVM!
     var bag=DisposeBag()
     
+    lazy var topBarHeight: CGFloat = {
+     // return UIApplication.shared.statusBarFrame.size.height +
+        return (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }()
+    
+    
+    lazy var bottomBarHeight: CGFloat = {
+        return messageBar.frame.height
+    }()
+    
     lazy var adapter: TableViewAdapter = { [unowned self] in
         let adapter=TableViewAdapter(tableView: tableView)
         
@@ -44,6 +54,8 @@ class MessagingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.largeTitleDisplayMode = .never
         
         self.view.backgroundColor = UIColor.backgroundColor
         self.title="Chat"
@@ -96,7 +108,7 @@ class MessagingVC: UIViewController {
                 
                 let  safeAreaInset = keyboardVisibleHeight <= sSelf.view.safeAreaInsets.bottom ? 0 : sSelf.view.safeAreaInsets.bottom
 
-                sSelf.bottomConstraint.constant = -keyboardVisibleHeight + safeAreaInset
+                sSelf.bottomConstraint.constant = keyboardVisibleHeight - safeAreaInset
                 
                 UIView.animate(withDuration: 0.0) {
                     sSelf.view.layoutIfNeeded()
@@ -108,8 +120,9 @@ class MessagingVC: UIViewController {
     }
     
     func updateContentInset()  {
+        
         let oldInset =  tableView.contentInset
-        let newInset = UIEdgeInsets(top: 16 + messageBar.frame.height , left: 0, bottom: 0, right: 0)
+        let newInset = UIEdgeInsets(top:  bottomBarHeight + 8 , left: 0, bottom: topBarHeight  + 16, right: 0)
         tableView.contentInset = newInset
         tableView.contentOffset.y = tableView.contentOffset.y + (oldInset.top - newInset.top)
     }

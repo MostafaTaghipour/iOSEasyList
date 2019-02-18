@@ -19,6 +19,8 @@ class LayoutVC: UIViewController {
     var viewModel:LayoutVM!
     var bag=DisposeBag()
     
+    let contantPadding :CGFloat = 12
+    let itemSpacing :CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,24 @@ class LayoutVC: UIViewController {
                 self?.adapter.setData(newData: items)
             })
             .disposed(by: bag)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceRotated), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    @objc func deviceRotated(){
+        if UIDevice.current.orientation.isLandscape {
+            //Code here
+        } else {
+            //Code here
+        }
+        setLayout(type: adapter.layoutType, force: true)
     }
     
     @objc func changeLayout(){
@@ -102,26 +122,29 @@ class LayoutVC: UIViewController {
         switch type {
         case .Linear:
             let layout = UICollectionViewFullWidthFlowLayout()
+             layout.minimumLineSpacing=itemSpacing
+            layout.sectionInset = UIEdgeInsets(top: contantPadding, left: contantPadding, bottom: contantPadding, right: contantPadding)
             collectionView.collectionViewLayout = layout
             break
         case .Grid:
             let layout = UICollectionViewFlowLayout()
-            layout.minimumInteritemSpacing=5
-            layout.minimumLineSpacing=5
-            layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+            layout.minimumInteritemSpacing=itemSpacing/2
+            layout.minimumLineSpacing=itemSpacing
+            layout.sectionInset = UIEdgeInsets(top: contantPadding, left: contantPadding, bottom: contantPadding, right: contantPadding)
             collectionView.collectionViewLayout = layout
             break
         case .Spanned:
             let layout = UICollectionViewFlowLayout()
-            layout.minimumInteritemSpacing=5
-            layout.minimumLineSpacing=5
-            layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+            layout.minimumInteritemSpacing=itemSpacing/2
+            layout.minimumLineSpacing=itemSpacing
+            layout.sectionInset = UIEdgeInsets(top: contantPadding, left: contantPadding, bottom: contantPadding, right: contantPadding)
             collectionView.collectionViewLayout = layout
             break
         case .Staggered:
             let layout = UICollectionViewStaggeredLayout()
-            layout.columnCount = 3
-         layout.minimumColumnSpacing=5
+            layout.columnCount = UIDevice.current.orientation == UIDeviceOrientation.portrait ? 2 : 3
+         layout.minimumColumnSpacing=itemSpacing
+            layout.sectionInset = UIEdgeInsets(top:contantPadding, left: contantPadding, bottom: contantPadding, right:contantPadding)
             collectionView.collectionViewLayout = layout
         
             break
@@ -129,9 +152,9 @@ class LayoutVC: UIViewController {
             let layout = UICollectionViewJustifiedFlowLayout()
             layout.horizontalAlignment = .left
             layout.estimatedItemSize = CGSize(width: 1, height: 1)
-            layout.minimumInteritemSpacing=8
-            layout.minimumLineSpacing=8
-            layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+            layout.minimumInteritemSpacing=itemSpacing
+            layout.minimumLineSpacing=itemSpacing
+            layout.sectionInset = UIEdgeInsets(top: contantPadding, left: contantPadding, bottom: contantPadding, right: contantPadding)
             collectionView.collectionViewLayout = layout
         }
         

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessagingVC" customModule="iOSEasyList_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomConstraint" destination="sjB-AE-3qd" id="AfJ-Kr-dMS"/>
+                <outlet property="messageBar" destination="LGp-FP-t7n" id="piN-mj-G4d"/>
+                <outlet property="tableView" destination="yHG-SY-f2x" id="kCf-Rl-WDX"/>
+                <outlet property="view" destination="iN0-l3-epB" id="5xb-jR-tuk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yHG-SY-f2x">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGp-FP-t7n" customClass="MessageBar" customModule="iOSEasyList_Example" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <viewLayoutGuide key="safeArea" id="ken-Ik-YGe"/>
+                    <items/>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yHG-SY-f2x" firstAttribute="bottom" secondItem="LGp-FP-t7n" secondAttribute="bottom" id="5VM-jq-h0d"/>
+                <constraint firstItem="LGp-FP-t7n" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="7nO-4A-LCO"/>
+                <constraint firstItem="LGp-FP-t7n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Zsn-Ya-5FA"/>
+                <constraint firstItem="yHG-SY-f2x" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="hv4-RN-VsH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LGp-FP-t7n" secondAttribute="bottom" id="sjB-AE-3qd"/>
+                <constraint firstItem="yHG-SY-f2x" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wIQ-U6-miY"/>
+                <constraint firstItem="yHG-SY-f2x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zUq-Im-kMD"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

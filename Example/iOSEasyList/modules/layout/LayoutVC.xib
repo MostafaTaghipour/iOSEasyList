@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LayoutVC" customModule="ListExample_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LayoutVC" customModule="iOSEasyList_Example" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="XzP-WU-Xis" id="uai-tm-4QN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,7 +37,7 @@
                 <constraint firstItem="XzP-WU-Xis" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Nkr-XM-VZY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XzP-WU-Xis" secondAttribute="trailing" id="Rjh-Nv-Ctb"/>
                 <constraint firstItem="XzP-WU-Xis" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="g76-sp-C3c"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XzP-WU-Xis" secondAttribute="bottom" id="y7h-cB-KiY"/>
+                <constraint firstAttribute="bottom" secondItem="XzP-WU-Xis" secondAttribute="bottom" id="y7h-cB-KiY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

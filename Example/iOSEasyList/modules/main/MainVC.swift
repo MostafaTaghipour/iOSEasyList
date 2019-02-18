@@ -53,9 +53,12 @@ class MainVC: UIViewController {
     }
     
     @IBAction func goToMessageingVC(_ sender: Any) {
-        if let vc = UIStoryboard(name: "messaging", bundle: nil).instantiateViewController(withIdentifier: "MessagingVC") as? MessagingVC {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = MessagingVC(nibName: "MessagingVC", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    
+//        if let vc = UIStoryboard(name: "messaging", bundle: nil).instantiateViewController(withIdentifier: "MessagingVC") as? MessagingVC {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
 }
 

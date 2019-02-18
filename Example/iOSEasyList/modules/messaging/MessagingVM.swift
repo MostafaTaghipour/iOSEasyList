@@ -22,7 +22,6 @@ class MessagingVM  {
         list.append( Message(message: "can you borrow me your book, i really need it \ni promise you give back it very soon.", sender: sarah, createdAt: Date().millisecondsSince1970))
         list.append( Message(message: "hi sarah \ni'm fine", sender: me, createdAt: Date().millisecondsSince1970-200000))
         list.append( Message(message: "hi john how are you ?", sender: sarah, createdAt: Date().millisecondsSince1970-300000))
-        
         items.value=list
     }
     
