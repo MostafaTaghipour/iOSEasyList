@@ -24,7 +24,7 @@ Everything you need to implement your own lists:
 - Filterable
 - Multiple data type
 
-<img width="290" alt="animation" src="/screenshots/animation-ios.gif"> <img width="290" alt="expandable" src="/screenshots/expandable_ios.gif"> <img width="290" alt="filtering" src="/screenshots/filtering-ios.gif"> <img width="290" alt="message" src="/screenshots/message-ios.gif"> <img width="290" alt="layout" src="/screenshots/layout-ios.gif"> <img width="290" alt="pagination" src="/screenshots/pagination-ios.gif"> <img width="290" alt="sectioned" src="/screenshots/sectioned-ios.gif">
+<img width="290" alt="animation" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/animation-ios.gif"> <img width="290" alt="expandable" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/expandable_ios.gif"> <img width="290" alt="filtering" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/filtering-ios.gif"> <img width="290" alt="message" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/message-ios.gif"> <img width="290" alt="layout" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/layout-ios.gif"> <img width="290" alt="pagination" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/pagination-ios.gif"> <img width="290" alt="sectioned" src="https://raw.githubusercontent.com/MostafaTaghipour/iOSEasyList/master/screenshots/sectioned-ios.gif">
 
 
 ## Requirements
