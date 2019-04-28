@@ -33,11 +33,11 @@ struct IndexMovement : Hashable {
     var from = 0
     var to = 0
     
-    public var hashValue: Int {
-        get {
-            return "\(from)-\(to)".hashValue
-        }
+    
+    func hash(into hasher: inout Hasher){
+        return hasher.combine("\(from)-\(to)".hashValue)
     }
+   
     
     public static func ==(lhs: IndexMovement, rhs: IndexMovement) -> Bool {
         return lhs.hashValue == rhs.hashValue
@@ -93,7 +93,7 @@ func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexResult {
         }
     }
     
-    expectIndexes = expectIndexes.filter { return !diffResult.deletes.contains(expectIndexes.index(of: $0)!) }
+    expectIndexes = expectIndexes.filter { return !diffResult.deletes.contains(expectIndexes.firstIndex(of: $0)!) }
     
     for (index, item) in to.enumerated() {
         if oldIds.contains(item.diffIdentifier) {
@@ -107,7 +107,7 @@ func indexedDiff(from:Array<Diffable>, to:Array<Diffable>) -> DiffIndexResult {
     for (key, _) in oldIndexMap {
         assert(newIndexMap.keys.contains(key), "对应key不存在")
         let fromIndex = oldIndexMap[key]!
-        let expectIndex = expectIndexes.index(of: key)
+        let expectIndex = expectIndexes.firstIndex(of: key)
         let toIndex = newIndexMap[key]!
         if expectIndex == nil {
             continue
@@ -148,10 +148,8 @@ struct RowsMovement : Hashable {
     public var from = IndexPath()
     public var to = IndexPath()
     
-    public var hashValue: Int {
-        get {
-            return "\(from.section)-\(from.row)-\(from.item)-\(to.row)-\(to.item)".hashValue
-        }
+    func hash(into hasher: inout Hasher){
+        return hasher.combine( "\(from.section)-\(from.row)-\(from.item)-\(to.row)-\(to.item)".hashValue)
     }
     
     public static func ==(lhs: RowsMovement, rhs: RowsMovement) -> Bool {

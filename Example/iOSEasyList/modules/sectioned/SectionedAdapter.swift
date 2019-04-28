@@ -48,6 +48,6 @@ class SectionedAdapter: TableViewAdapter {
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return getSections(itemType: MovieSection.self)?.map {$0.firstLetter}.index(of: title) ?? 0
+        return getSections(itemType: MovieSection.self)?.map {$0.firstLetter}.firstIndex(of: title) ?? 0
     }
 }

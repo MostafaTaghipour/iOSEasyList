@@ -64,7 +64,7 @@ extension Movie:Equatable{
 
 extension Movie:Diffable{
     var diffIdentifier: String {
-        return "\(id)-\(title)"
+        return "\(id)-\(title!)"
     }
 
     func isEqual(to object: Any) -> Bool {

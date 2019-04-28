@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'iOSEasyList'
-s.version          = '1.0.6'
+s.version          = '1.0.8'
 s.summary          = 'A data-driven UICollectionView and UITableView framework for building fast and flexible lists'
 
 # This description is used to generate tags and improve search results.

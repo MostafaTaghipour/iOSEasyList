@@ -148,11 +148,11 @@ class NibView: UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|",
                                                       options: [],
                                                       metrics: nil,
-                                                      views: ["childView": view]))
+                                                      views: ["childView": view!]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|",
                                                       options: [],
                                                       metrics: nil,
-                                                      views: ["childView": view]))
+                                                      views: ["childView": view!]))
     }
     
    private func loadNib() -> UIView {
@@ -175,8 +175,8 @@ extension UIView {
 
 public extension Float {
     /// SwiftRandom extension
-    public static func random(lower: Float = 0, _ upper: Float = 100) -> Float {
-        return (Float(arc4random()) / 0xFFFFFFFF) * (upper - lower) + lower
+    static func random(lower: Float = 0, _ upper: Float = 100) -> Float {
+        return (Float(arc4random()) / Float(0xFFFFFFFF)) * (upper - lower) + lower
     }
 }
 

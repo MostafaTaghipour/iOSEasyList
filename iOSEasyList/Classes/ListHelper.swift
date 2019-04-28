@@ -105,7 +105,7 @@ extension Array {
 extension Array where Element: Equatable {
     
     @discardableResult public mutating func remove(item: Element) -> Bool {
-        if let index = index(of: item) {
+        if let index = firstIndex(of: item) {
             self.remove(at: index)
             return true
         }
@@ -113,7 +113,7 @@ extension Array where Element: Equatable {
     }
     
     @discardableResult public mutating func remove(where predicate: (Array.Iterator.Element) -> Bool) -> Bool {
-        if let index = self.index(where: { (element) -> Bool in
+        if let index = self.firstIndex(where: { (element) -> Bool in
             return predicate(element)
         }) {
             self.remove(at: index)
